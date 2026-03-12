@@ -572,6 +572,169 @@ html, body {
   .dr-modal { padding: 1.4rem; }
 }
 
+
+/* ========== LEVEL INTRO SCREEN ========== */
+.level-intro-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #211C18;
+  background-image:
+    radial-gradient(circle, rgba(200,187,168,0.055) 1px, transparent 1px),
+    radial-gradient(circle, rgba(200,187,168,0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  z-index: 950;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.level-intro-overlay::-webkit-scrollbar { display: none; }
+.level-intro-overlay.visible {
+  display: flex;
+  animation: liIntroFadeIn 0.35s ease forwards;
+}
+@keyframes liIntroFadeIn {
+  from { opacity: 0; filter: blur(10px); }
+  to   { opacity: 1; filter: blur(0px); }
+}
+
+.li-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+
+.li-exit-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700; font-size: 20px;
+  color: #FDFAF4;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  transition: background 0.15s;
+  line-height: 1;
+}
+.li-exit-btn:hover { background: rgba(253,250,244,0.08); }
+
+.li-continue-btn {
+  background: #C4440A; border: none; cursor: pointer;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #FDFAF4;
+  padding: 10px 20px; border-radius: 8px;
+  transition: background 0.15s, transform 0.1s;
+}
+.li-continue-btn:hover  { background: #A83808; }
+.li-continue-btn:active { transform: scale(0.97); }
+
+.li-intro {
+  padding: 4px 20px 28px;
+  flex-shrink: 0;
+}
+
+.li-intro-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.li-number {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 35px;
+  color: #C4440A;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.li-title {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-size: clamp(26px, 5vw, 38px);
+  color: #FDFAF4;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.li-stage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px 32px;
+  flex: 1;
+}
+
+@media (max-width: 680px) {
+  .li-stage {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 0 16px 32px;
+  }
+  .li-tracer-cell { align-items: stretch; }
+  .li-tracer-cell canvas { width: 100% !important; }
+  .li-cell-desc { width: 100% !important; }
+}
+
+.li-tracer-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.li-tracer-cell canvas.li-pair-canvas {
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+.li-cell-desc {
+  background: rgba(28,22,18,0.82);
+  border-radius: 0 0 10px 10px;
+  padding: 14px 16px 16px;
+  width: 100%;
+  border: 1px solid rgba(253,250,244,0.07);
+  border-top: none;
+}
+
+.li-cell-type {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #FDFAF4;
+  margin-bottom: 6px;
+}
+
+.li-cell-copy {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(253,250,244,0.32);
+}
+
+/* No-tracer text content (levels 21 & 22) */
+.li-text-content {
+  padding: 8px 24px 40px;
+  max-width: 540px;
+  margin: 0 auto;
+  flex: 1;
+}
+.li-text-content p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(253,250,244,0.42);
+}
+
 /* ========== BACK CONFIRM MODAL ========== */
 .back-confirm-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -1005,6 +1168,7 @@ html, body {
   bottom: 1rem; right: 1rem;
   background: var(--paper);
   border: 1px solid var(--ink-faint);
+  z-index: 40;
   border-radius: 8px;
   padding: 1rem 1.2rem;
   padding-top: 1.6rem;
@@ -1012,7 +1176,6 @@ html, body {
   font-size: 0.8rem;
   line-height: 1.5;
   color: var(--ink-light);
-  z-index: 30;
   display: none;
   box-shadow: 2px 4px 12px rgba(26,20,16,0.12);
 }
@@ -1907,6 +2070,22 @@ html, body {
 </div>
 
 <!-- GAME SCREEN -->
+<!-- Level Intro Screen overlay -->
+<div class="level-intro-overlay" id="level-intro-overlay">
+  <div class="li-topbar">
+    <button class="li-exit-btn" id="li-exit-btn">✕</button>
+    <button class="li-continue-btn" id="li-continue-btn">Continue to Game</button>
+  </div>
+  <div class="li-intro">
+    <div class="li-intro-heading">
+      <div class="li-number" id="li-number"></div>
+      <div class="li-title" id="li-title"></div>
+    </div>
+  </div>
+  <div class="li-stage" id="li-stage"></div>
+  <div class="li-text-content" id="li-text-content" style="display:none"></div>
+</div>
+
 <!-- Back navigation confirm modal -->
 <div class="back-confirm-overlay hidden" id="back-confirm-overlay">
   <div class="back-confirm-modal">
@@ -2222,8 +2401,8 @@ const LEVELS = [
     ],
     hasHintPanel: true,
     hintContent: `<h4>Roman vs Italic</h4>
-      <p><strong>Roman</strong> — The upright, standard style. Constructed and stable.</p>
-      <p><strong>Italic</strong> — A true italic is redrawn with cursive letterforms, not just slanted. Spot the single-story 'a' and the 'f' with a descender.</p>`
+      <p><strong>Roman</strong> — The upright, standard style. Constructed, stable, and the default form of almost every typeface.</p>
+      <p><strong>Italic</strong> — A true italic is redrawn from scratch, not simply slanted. Look for the single-story 'a', the 'f' with a descender, and overall letterforms that feel more fluid and calligraphic.</p>`
   },
   {
     num: 2, name: 'Weight Master', desc: 'Light · Regular · Bold',
@@ -2242,9 +2421,9 @@ const LEVELS = [
     ],
     hasHintPanel: true,
     hintContent: `<h4>Font Weight</h4>
-      <p><strong>Light</strong> — Thin strokes, airy and elegant. Best at large display sizes.</p>
-      <p><strong>Regular</strong> — The balanced workhorse weight, designed for comfortable reading.</p>
-      <p><strong>Bold</strong> — Heavy strokes for emphasis, hierarchy, and impact.</p>`
+      <p><strong>Light</strong> — Thin strokes, airy and elegant. Designed for large display sizes where delicacy reads as sophistication.</p>
+      <p><strong>Regular</strong> — The balanced workhorse. Designed for comfortable reading at any size, this is the weight a typeface is built around.</p>
+      <p><strong>Bold</strong> — Heavy strokes for emphasis, hierarchy, and impact. Use it sparingly and it commands attention.</p>`
   },
   {
     num: 3, name: 'Apprentice', desc: 'Serif vs Sans',
@@ -2253,8 +2432,8 @@ const LEVELS = [
     pools: { 'Serif': SERIF_POOL, 'Sans-Serif': SANS_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Serif vs Sans-Serif</h4>
-      <p><strong>Serif</strong> — Small finishing strokes at stroke endings, rooted in calligraphic tradition. Classic and authoritative.</p>
-      <p><strong>Sans-Serif</strong> — No finishing strokes. Clean and modern, dominant in UI and screen design.</p>`
+      <p><strong>Serif</strong> — Small finishing strokes at the ends of letterforms (think "little feet"), rooted in centuries of calligraphic and print tradition. Classic, authoritative, and warm.</p>
+      <p><strong>Sans-Serif</strong> — Literally "without serif." No finishing strokes, nothing added at the ends of letterforms. Clean, modern, and dominant in UI and screen design.</p>`
   },
   {
     num: 4, name: 'Slab Eye', desc: 'Slab Serif vs Classic Serif',
@@ -2262,9 +2441,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Slab Serif': SLAB_POOL, 'Classic Serif': SERIF_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>Slab Serif vs Classic Serif</h4>
-      <p><strong>Slab Serif</strong> — Heavy, block-like serifs with little to no bracketing. Sturdy, mechanical feel.</p>
-      <p><strong>Classic Serif</strong> — Traditional serifs with tapered or bracketed endings. More refined, with variable stroke contrast.</p>`
+    hintContent: `<h4>Slab Serif vs Serif</h4>
+      <p><strong>Slab Serif</strong> — Block-like serifs with little to no bracketing. The defining trait: the serifs are often the same weight as the strokes themselves. Uniform, mechanical, built like a brick.</p>
+      <p><strong>Serif</strong> — Unlike slabs, the serifs taper or bracket into the stem. Look for the transition: the serif is always thinner than the stroke it finishes.</p>`
   },
   {
     num: 5, name: 'Historian', desc: 'Oldstyle Serif vs Modern Serif',
@@ -2272,9 +2451,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Oldstyle Serif': OLDSTYLE_POOL, 'Modern Serif': MODERN_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>Oldstyle Serif vs Modern Serif</h4>
-      <p><strong>Oldstyle Serif</strong> — Diagonal stress, bracketed serifs, low stroke contrast. Warm and organic feel.</p>
-      <p><strong>Modern Serif</strong> — Vertical stress, hairline serifs, extreme stroke contrast. Dramatic and refined.</p>`
+    hintContent: `<h4>Old Style Serif vs Modern Serif</h4>
+      <p><strong>Old Style Serif</strong> — Low stroke contrast, bracketed serifs. Organic, warm, and hand-drawn rather than constructed. Some are 500 years old and still widely used today.</p>
+      <p><strong>Modern Serif</strong> — Vertical stress, hairline serifs, extreme stroke contrast. Precise and theatrical. The signature look of luxury fashion magazines (think Vogue).</p>`
   },
   {
     num: 6, name: 'Width Wars', desc: 'Narrow vs Wide',
@@ -2283,8 +2462,8 @@ const LEVELS = [
     pools: { 'Narrow': CONDENSED_POOL, 'Wide': EXPANDED_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Narrow vs Wide</h4>
-      <p><strong>Narrow / Condensed</strong> — Redrawn to fit more characters in less space. Tall and efficient, favoured for headlines and space-constrained layouts.</p>
-      <p><strong>Wide / Expanded</strong> — Deliberately broadened letterforms. Commanding, slow-reading presence — used for impact, signage, and display work.</p>`
+      <p><strong>Narrow / Condensed</strong> — Redrawn to fit more characters in less space. Tall and efficient, favored for headlines and tight layouts.</p>
+      <p><strong>Wide / Expanded</strong> — Deliberately broadened letterforms. Commanding and slow-reading, used for impact, signage, and display work.</p>`
   },
   {
     num: 7, name: 'Round Robin', desc: 'Rounded vs Regular Sans',
@@ -2292,9 +2471,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Rounded Sans': ROUNDED_SANS_POOL, 'Regular Sans': SANS_POOL_NO_RUBIK },
     hasHintPanel: true,
-    hintContent: `<h4>Rounded vs Regular Sans</h4>
-      <p><strong>Rounded Sans</strong> — Terminals and corners are deliberately softened into curves. Warm, approachable, friendly — common in wellness, children's media, and consumer apps.</p>
-      <p><strong>Regular Sans</strong> — Flat or slightly tapered terminals, no rounding. Clean, neutral, professional — the workhorse of modern typesetting.</p>`
+    hintContent: `<h4>Rounded Sans vs Sans</h4>
+      <p><strong>Rounded Sans</strong> — Terminals and corners are deliberately softened into curves. Warm and approachable, common in wellness, children's media, and consumer apps.</p>
+      <p><strong>Sans</strong> — You know it. Flat or slightly tapered terminals, no rounding. Clean, neutral, and professional. The workhorse of modern typesetting.</p>`
   },
   {
     num: 8, name: 'Classicist', desc: 'Oldstyle vs Transitional Serif',
@@ -2302,9 +2481,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Oldstyle Serif': OLDSTYLE_POOL, 'Transitional Serif': TRANSITIONAL_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>Oldstyle Serif vs Transitional Serif</h4>
-      <p><strong>Oldstyle Serif</strong> — Diagonal stress, low contrast, organic warmth. Think Garamond.</p>
-      <p><strong>Transitional Serif</strong> — Vertical stress, more contrast, refined. Think Baskerville.</p>`
+    hintContent: `<h4>Old Style vs Transitional Serif</h4>
+      <p><strong>Old Style Serif</strong> — You've seen this before. Diagonal stress (look at the axis of the 'o' — it tilts), low contrast, organic and warm. Garamond is the reference.</p>
+      <p><strong>Transitional Serif</strong> — The step between Old Style and Modern. More vertical stress (the 'o' axis straightens up), higher stroke contrast, less calligraphic. Serifs are sharper than Old Style but not as extreme as Modern.</p>`
   },
   {
     num: 9, name: 'Serif Timeline', desc: 'Transitional vs Modern',
@@ -2313,8 +2492,8 @@ const LEVELS = [
     pools: { 'Transitional': TRANSITIONAL_POOL, 'Modern Serif': MODERN_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Transitional vs Modern Serif</h4>
-      <p><strong>Transitional</strong> — The bridge between Oldstyle and Modern. More vertical axis, increased contrast, sharper serifs. Baskerville is the archetype.</p>
-      <p><strong>Modern Serif</strong> — Also called Didone. Extreme thick-thin contrast, perfectly vertical stress, hairline serifs. Bodoni and Didot are the classics.</p>`
+      <p><strong>Transitional</strong> — As seen before: higher contrast than Old Style, lower than Modern. The 'o' axis is nearly vertical, serifs are sharp. Baskerville is the archetype.</p>
+      <p><strong>Modern Serif</strong> — Also called Didone. Extreme thick-thin (almost theatrical) contrast, perfectly vertical stress, hairline serifs. Bodoni is the reference.</p>`
   },
   {
     num: 10, name: 'The Big Three', desc: 'Serif · Sans · Slab',
@@ -2323,10 +2502,10 @@ const LEVELS = [
     dynamicZoneLabels: true,
     pools: { 'Serif': SERIF_POOL, 'Sans-Serif': SANS_POOL, 'Slab Serif': SLAB_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>The Three Major Type Families</h4>
-      <p><strong>Serif</strong> — Finishing strokes at letter ends. Classic, authoritative, rooted in centuries of print tradition.</p>
-      <p><strong>Sans-Serif</strong> — No finishing strokes. Clean and modern, the dominant choice for UI and screen design.</p>
-      <p><strong>Slab Serif</strong> — Bold, block-like serifs with minimal bracketing. Sturdy, mechanical, high-impact presence.</p>`
+    hintContent: `<h4>The Big Three</h4>
+      <p><strong>Serif</strong> — The printing press, the newspaper, the book. Centuries of authority baked into every stroke ending.</p>
+      <p><strong>Sans-Serif</strong> — Nothing added at the ends. The 20th century said strip it back. Bauhaus, modernism, the screen.</p>
+      <p><strong>Slab Serif</strong> — The serifs are as heavy as the strokes themselves. No tapering, no transition. Built for the American frontier — wanted posters, circus bills, railway timetables.</p>`
   },
   {
     num: 11, name: 'Vintage Eye', desc: 'Typewriter vs Classic Serif',
@@ -2334,9 +2513,9 @@ const LEVELS = [
     mode: 'pool', rounds: 3,
     pools: { 'Typewriter': TYPEWRITER_POOL, 'Classic Serif': SERIF_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>Typewriter vs Classic Serif</h4>
-      <p><strong>Typewriter</strong> — Monospaced with mechanical character: uneven stroke weight, slab-like serifs, worn imperfection. Evokes analog authenticity.</p>
-      <p><strong>Classic Serif</strong> — Proportional type with refined stroke contrast and polished finishing details.</p>`
+    hintContent: `<h4>Typewriter Style vs Serif</h4>
+      <p><strong>Typewriter Style</strong> — Technically a monospaced slab serif. The mechanical character wasn't a design choice originally — it was a constraint of the machine. Now it's a desired aesthetic.</p>
+      <p><strong>Serif</strong> — You know it. You get it. Have fun with it.</p>`
   },
   {
     num: 12, name: 'Code Eye', desc: 'Monospaced vs Classic Sans',
@@ -2345,8 +2524,8 @@ const LEVELS = [
     pools: { 'Monospaced': MONO_POOL, 'Classic Sans': SANS_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Monospaced vs Classic Sans</h4>
-      <p><strong>Monospaced</strong> — Every character occupies identical horizontal space. Designed for code, terminals, and typewriter aesthetics.</p>
-      <p><strong>Classic Sans</strong> — Proportional spacing: narrow letters like 'i' take less space than wide ones like 'w'. Optimised for natural reading flow.</p>`
+      <p><strong>Monospaced</strong> — Every character occupies identical horizontal space, just like typewriter fonts. Designed for code, and anywhere characters need to align vertically.</p>
+      <p><strong>Classic Sans</strong> — Proportional spacing, where narrow letters like 'i' take less space than wide ones like 'W'. Monospaced never does that.</p>`
   },
   {
     num: 13, name: 'Edge Finder', desc: 'Square Sans vs Classic Sans',
@@ -2354,9 +2533,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Square Sans': SQUARE_SANS_POOL, 'Classic Sans': SANS_POOL },
     hasHintPanel: true,
-    hintContent: `<h4>Square Sans vs Classic Sans</h4>
-      <p><strong>Square Sans</strong> — Angular, squared-off terminals and curves. Techy, futuristic feel.</p>
-      <p><strong>Classic Sans</strong> — Traditional sans-serif with rounded or neutral terminals.</p>`
+    hintContent: `<h4>'Squared' Sans vs Sans</h4>
+      <p><strong>'Squared' Sans</strong> — Look at the curves. They don't fully curve. The 'o' flattens, the 'c' has angular corners where you'd expect softness. Feels heavy and stiff.</p>
+      <p><strong>Sans</strong> — The curves do what curves want to do. Rounded, neutral, familiar. Next to a 'Squared' Sans it almost looks soft.</p>`
   },
   {
     num: 14, name: 'Tri-Sort', desc: 'Oldstyle · Trans · Modern',
@@ -2365,9 +2544,9 @@ const LEVELS = [
     pools: { 'Oldstyle Serif': OLDSTYLE_POOL, 'Transitional Serif': TRANSITIONAL_POOL, 'Modern Serif': MODERN_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Three Eras of Serif Design</h4>
-      <p><strong>Oldstyle Serif</strong> — Diagonal stress, bracketed serifs, low contrast. Renaissance origins.</p>
-      <p><strong>Transitional Serif</strong> — Vertical stress, moderate contrast. 18th century refinement.</p>
-      <p><strong>Modern Serif</strong> — Extreme vertical stress, hairline serifs, maximum contrast. Didone era.</p>`
+      <p><strong>Oldstyle Serif</strong> — Softer serifs. Drawn by hand, shaped by the pen. Some 500 years old and still everywhere.</p>
+      <p><strong>Transitional Serif</strong> — Sharper serifs. The 18th century was getting more rational, more controlled. The bridge between warmth and precision.</p>
+      <p><strong>Modern Serif</strong> — Hairline serifs. The 19th century pushed it to the extreme. Then fashion picked it up and never let go.</p>`
   },
   {
     num: 15, name: 'Gothic Maze', desc: 'Blackletter vs Blackletter',
@@ -2377,7 +2556,7 @@ const LEVELS = [
     dynamicZoneLabels: true,
     hasHintPanel: true,
     hintContent: `<h4>Blackletter</h4>
-      <p>Dense, angular letterforms from medieval European manuscripts. Look for subtle differences in how curves, stroke endings, and overall texture vary between typefaces.</p>`
+      <p>Dense, angular letterforms from medieval European manuscripts. Look for subtle differences in how curves are formed, how strokes end, and how the overall texture of each typeface feels on the page.</p>`
   },
   {
     num: 16, name: 'Sans Expert', desc: 'Geometric vs Humanist',
@@ -2386,8 +2565,8 @@ const LEVELS = [
     pools: { 'Geometric Sans': GEOMETRIC_SANS_POOL, 'Humanist Sans': HUMANIST_SANS_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Geometric vs Humanist Sans</h4>
-      <p><strong>Geometric Sans</strong> — Based on circles and straight lines. Uniform strokes, perfect 'o'. Think Futura.</p>
-      <p><strong>Humanist Sans</strong> — Pen-influenced with varying stroke width. Open apertures, warmer. Think Gill Sans.</p>`
+      <p><strong>Geometric Sans</strong> — Built on circles and straight lines. Uniform stroke width, a perfect 'o', and a rational, constructed feel. Futura is the reference.</p>
+      <p><strong>Humanist Sans</strong> — Pen-influenced, with varying stroke width, open apertures, and a warmth that feels more human than geometric. Gill Sans is a classic example.</p>`
   },
   {
     num: 17, name: 'Width Master', desc: 'Regular vs Condensed',
@@ -2406,8 +2585,8 @@ const LEVELS = [
     ],
     hasHintPanel: true,
     hintContent: `<h4>Regular vs Condensed</h4>
-      <p><strong>Regular</strong> — Standard proportions, the normal width the designer intended.</p>
-      <p><strong>Condensed</strong> — Redrawn (not scaled) to be narrower. Tall and space-efficient, often used for headlines.</p>`
+      <p><strong>Regular</strong> — Standard proportions, the normal width the designer intended. Balanced and versatile.</p>
+      <p><strong>Condensed</strong> — Redrawn, not just scaled, to be narrower. Tall and space-efficient, often the go-to for headlines with limited room.</p>`
   },
   {
     num: 18, name: 'Slab Scholar', desc: 'Bracketed vs Unbracketed',
@@ -2416,8 +2595,8 @@ const LEVELS = [
     pools: { 'Bracketed Slab': BRACKETED_SLAB_POOL, 'Unbracketed Slab': UNBRACKETED_SLAB_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Bracketed Slab vs Unbracketed Slab</h4>
-      <p><strong>Bracketed Slab</strong> — Serifs transition into the stem with a curve or gradual angle (Clarendon style). Warmer, more organic.</p>
-      <p><strong>Unbracketed Slab</strong> — For this game: serifs meet the stem at a clean 90° angle with no transition. More geometric, mechanical feel.</p>`
+      <p><strong>Bracketed Slab</strong> — Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition.</p>
+      <p><strong>Unbracketed Slab</strong> — Serifs meet the stem at a clean 90° angle with no transition. More geometric and mechanical in feel.</p>`
   },
   {
     num: 19, name: 'Sharp Eye', desc: 'Semi-Serif vs Sans',
@@ -2426,8 +2605,8 @@ const LEVELS = [
     pools: { 'Semi-Serif': SEMI_SERIF_POOL, 'Sans-Serif': SANS_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Semi-Serif vs Sans-Serif</h4>
-      <p><strong>Semi-Serif</strong> — Subtle flares or partial serifs at stroke endings. Between serif and sans.</p>
-      <p><strong>Sans-Serif</strong> — Clean stroke endings with no serifs or flares whatsoever.</p>`
+      <p><strong>Semi-Serif</strong> — Subtle flares or partial serifs at stroke endings, sitting somewhere between a full serif and a clean sans.</p>
+      <p><strong>Sans-Serif</strong> — Clean stroke endings. Pure and unadorned.</p>`
   },
   {
     num: 20, name: 'Twin Spotter', desc: 'Display vs Text',
@@ -2441,8 +2620,8 @@ const LEVELS = [
     ],
     hasHintPanel: true,
     hintContent: `<h4>Display vs Text</h4>
-      <p><strong>Display</strong> — Optimized for headlines: tighter spacing, higher contrast, more detail.</p>
-      <p><strong>Text</strong> — Optimized for body text: wider spacing, lower contrast, better readability at small sizes.</p>`
+      <p><strong>Display</strong> — Optimized for headlines. Tighter spacing, higher contrast, and more detail that rewards a closer look.</p>
+      <p><strong>Text</strong> — Optimized for body copy. Wider spacing, lower contrast, and better readability at small sizes where detail would become noise.</p>`
   },
   {
     num: 21, name: 'Chaos Round', desc: 'Random · Random · Random',
@@ -2450,7 +2629,9 @@ const LEVELS = [
     mode: 'pool', rounds: 10,
     pools: { 'Font A': ALL_FONTS_POOL, 'Font B': ALL_FONTS_POOL, 'Font C': ALL_FONTS_POOL },
     dynamicZoneLabels: true,
-    hasHintPanel: false
+    hasHintPanel: true,
+    hintContent: `<h4>Chaos Round</h4>
+      <p>Three fonts from anywhere in the game. Some combinations are easy, some will surprise you. This is also the best place to discover your next favorite font — every round is different. Save anything that catches your eye.</p>`
   },
   {
     num: 22, name: 'Grand Master', desc: 'Sibling vs Sibling',
@@ -2472,7 +2653,9 @@ const LEVELS = [
       { 'Side A': { family: "'Playfair Display', serif", weight: 400, desc: "Playfair Display — didone display serif, extreme contrast." }, 'Side B': { family: "'Noto Serif Display', serif", weight: 400, desc: "Noto Serif Display — universal display serif, balanced contrast." } }
     ],
     dynamicZoneLabels: true,
-    hasHintPanel: false
+    hasHintPanel: true,
+    hintContent: `<h4>Grand Master</h4>
+      <p>Two fonts from the same category. Same family, different souls. Now you're reading the individual essence within each.</p>`
   }
 ];
 
@@ -3481,7 +3664,7 @@ function renderLevelGrid(mode) {
         ? `<div class="lperfect">perfected ${best} / ${lev.rounds || 10}</div>`
         : '';
       card.innerHTML = `<div class="lheader"><div class="lnum">${lev.num}</div><div class="lname">${lev.name}</div></div><div class="ldesc">${lev.desc}</div>${perfectLine}`;
-      card.addEventListener('click', () => startSession(lev));
+      card.addEventListener('click', () => showLevelIntro(lev));
     }
 
     levelGrid.appendChild(card);
@@ -5377,6 +5560,507 @@ document.addEventListener('touchend', e => {
 
 // Click anywhere (overlay) → close zoom
 document.getElementById('zoom-overlay').addEventListener('click', closeZoom);
+
+
+// ═════════════════════════════════════════════════════════════════════
+// LEVEL INTRO SCREEN
+// ═════════════════════════════════════════════════════════════════════
+
+const LEVEL_INTRO_DATA = [
+  {
+    num: 1, title: 'Slant Eye', subtitle: 'Roman vs Italic',
+    cards: [
+      { type: 'Roman',  copy: 'The upright, standard style. Constructed, stable, and the default form of almost every typeface.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+      { type: 'Italic', copy: 'A true italic is redrawn from scratch, not simply slanted. Look for the single-story ‘a’, the ‘f’ with a descender, and letterforms that feel more fluid and calligraphic.',
+        font: 'EB Garamond', weight: 400, style: 'italic' },
+    ]
+  },
+  {
+    num: 2, title: 'Weight Master', subtitle: 'Light · Regular · Bold',
+    cards: [
+      { type: 'Light',   copy: 'Thin strokes, airy and elegant. Designed for large display sizes where delicacy reads as sophistication.',
+        font: 'Raleway', weight: 300, style: 'normal' },
+      { type: 'Regular', copy: 'The balanced workhorse. Designed for comfortable reading at any size — this is the weight a typeface is built around.',
+        font: 'Raleway', weight: 400, style: 'normal' },
+      { type: 'Bold',    copy: 'Heavy strokes for emphasis, hierarchy, and impact. Use it sparingly and it commands attention.',
+        font: 'Raleway', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 3, title: 'Apprentice', subtitle: 'Serif vs Sans-Serif',
+    cards: [
+      { type: 'Serif',      copy: 'Small finishing strokes at the ends of letterforms — think “little feet”. Rooted in centuries of calligraphic and print tradition. Classic, authoritative, and warm.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+      { type: 'Sans-Serif', copy: 'Literally “without serif.” No finishing strokes, nothing added at the ends of letterforms. Clean, modern, and dominant in UI and screen design.',
+        font: 'IBM Plex Sans', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 4, title: 'Slab Eye', subtitle: 'Slab Serif vs Serif',
+    cards: [
+      { type: 'Slab Serif', copy: 'Block-like serifs with little to no bracketing. The defining trait: the serifs are often the same weight as the strokes themselves. Uniform, mechanical, built like a brick.',
+        font: 'Bitter', weight: 700, style: 'normal' },
+      { type: 'Serif',      copy: 'Unlike slabs, the serifs taper or bracket into the stem. Look for the transition: the serif is always thinner than the stroke it finishes.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 5, title: 'Historian', subtitle: 'Old Style Serif vs Modern Serif',
+    cards: [
+      { type: 'Old Style Serif', copy: 'Low stroke contrast, bracketed serifs. Organic, warm, and hand-drawn rather than constructed. Some are 500 years old and still widely used today.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+      { type: 'Modern Serif',   copy: 'Vertical stress, hairline serifs, extreme stroke contrast. Precise and theatrical. The signature look of luxury fashion magazines (think Vogue).',
+        font: 'Bodoni Moda', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 6, title: 'Width Wars', subtitle: 'Narrow vs Wide',
+    cards: [
+      { type: 'Narrow / Condensed', copy: 'Redrawn to fit more characters in less space. Tall and efficient, favored for headlines and tight layouts.',
+        font: 'Barlow Condensed', weight: 700, style: 'normal' },
+      { type: 'Wide / Expanded',   copy: 'Deliberately broadened letterforms. Commanding and slow-reading, used for impact, signage, and display work.',
+        font: 'Stint Ultra Expanded', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 7, title: 'Round Robin', subtitle: 'Rounded Sans vs Sans',
+    cards: [
+      { type: 'Rounded Sans', copy: 'Terminals and corners are deliberately softened into curves. Warm and approachable, common in wellness, children’s media, and consumer apps.',
+        font: 'Nunito', weight: 400, style: 'normal' },
+      { type: 'Sans',         copy: 'Flat or slightly tapered terminals, no rounding. Clean, neutral, and professional. The workhorse of modern typesetting.',
+        font: 'IBM Plex Sans', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 8, title: 'Classicist', subtitle: 'Old Style vs Transitional Serif',
+    cards: [
+      { type: 'Old Style Serif',   copy: 'Diagonal stress (look at the axis of the ‘o’ — it tilts), low contrast, organic and warm. Garamond is the reference.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+      { type: 'Transitional Serif',copy: 'The step between Old Style and Modern. More vertical stress, higher stroke contrast, less calligraphic. Serifs are sharper than Old Style but not as extreme as Modern.',
+        font: 'Libre Baskerville', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 9, title: 'Serif Timeline', subtitle: 'Transitional vs Modern',
+    cards: [
+      { type: 'Transitional', copy: 'Higher contrast than Old Style, lower than Modern. The ‘o’ axis is nearly vertical, serifs are sharp. Baskerville is the archetype.',
+        font: 'Libre Baskerville', weight: 400, style: 'normal' },
+      { type: 'Modern Serif', copy: 'Also called Didone. Extreme thick-thin (almost theatrical) contrast, perfectly vertical stress, hairline serifs. Bodoni is the reference.',
+        font: 'Playfair Display', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 10, title: 'The Big Three', subtitle: 'Serif · Sans · Slab',
+    cards: [
+      { type: 'Serif',      copy: 'The printing press, the newspaper, the book. Centuries of authority baked into every stroke ending.',
+        font: 'Playfair Display', weight: 700, style: 'normal' },
+      { type: 'Sans-Serif', copy: 'Nothing added at the ends. The 20th century said strip it back. Bauhaus, modernism, the screen.',
+        font: 'DM Sans', weight: 400, style: 'normal' },
+      { type: 'Slab Serif', copy: 'The serifs are as heavy as the strokes themselves. No tapering, no transition. Built for the American frontier — wanted posters, circus bills, railway timetables.',
+        font: 'Bitter', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 11, title: 'Vintage Eye', subtitle: 'Typewriter Style vs Serif',
+    cards: [
+      { type: 'Typewriter Style', copy: 'Technically a monospaced slab serif. The mechanical character wasn’t a design choice originally — it was a constraint of the machine. Now it’s a desired aesthetic.',
+        font: 'Courier Prime', weight: 400, style: 'normal' },
+      { type: 'Serif',            copy: 'You know it. You get it. Have fun with it.',
+        font: 'Libre Baskerville', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 12, title: 'Code Eye', subtitle: 'Monospaced vs Classic Sans',
+    cards: [
+      { type: 'Monospaced',  copy: 'Every character occupies identical horizontal space, just like typewriter fonts. Designed for code, and anywhere characters need to align vertically.',
+        font: 'JetBrains Mono', weight: 400, style: 'normal' },
+      { type: 'Classic Sans',copy: 'Proportional spacing, where narrow letters like ‘i’ take less space than wide ones like ‘W’. Monospaced never does that.',
+        font: 'IBM Plex Sans', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 13, title: 'Edge Finder', subtitle: '‘Squared’ Sans vs Classic Sans',
+    cards: [
+      { type: '‘Squared’ Sans', copy: 'Look at the curves. They don’t fully curve. The ‘o’ flattens, the ‘c’ has angular corners where you’d expect softness. Feels heavy and stiff.',
+        font: 'Orbitron', weight: 400, style: 'normal' },
+      { type: 'Classic Sans',    copy: 'The curves do what curves want to do. Rounded, neutral, familiar. Next to a ‘Squared’ Sans it almost looks soft.',
+        font: 'IBM Plex Sans', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 14, title: 'Tri-Sort', subtitle: 'Oldstyle · Transitional · Modern',
+    cards: [
+      { type: 'Oldstyle Serif',    copy: 'Softer serifs. Drawn by hand, shaped by the pen. Some 500 years old and still everywhere.',
+        font: 'EB Garamond', weight: 400, style: 'normal' },
+      { type: 'Transitional Serif',copy: 'Sharper serifs. The 18th century was getting more rational, more controlled. The bridge between warmth and precision.',
+        font: 'Libre Baskerville', weight: 400, style: 'normal' },
+      { type: 'Modern Serif',      copy: 'Hairline serifs. The 19th century pushed it to the extreme. Then fashion picked it up and never let go.',
+        font: 'Playfair Display', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 15, title: 'Gothic Maze', subtitle: 'Blackletter vs Blackletter',
+    cards: [
+      { type: 'Blackletter', copy: 'Traditional Fraktur — angular broken strokes, the formal hand of German medieval manuscripts. Dense, ornate, architectural.',
+        font: 'UnifrakturMaguntia', weight: 400, style: 'normal' },
+      { type: 'Blackletter', copy: 'Gothic expression — bolder, heavier forms. The same medieval roots with a darker, more dramatic texture.',
+        font: 'Pirata One', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 16, title: 'Sans Expert', subtitle: 'Geometric vs Humanist Sans',
+    cards: [
+      { type: 'Geometric Sans', copy: 'Built on circles and straight lines. Uniform stroke width, a perfect ‘o’, and a rational, constructed feel. Futura is the reference.',
+        font: 'Josefin Sans', weight: 400, style: 'normal' },
+      { type: 'Humanist Sans',  copy: 'Pen-influenced, with varying stroke width, open apertures, and a warmth that feels more human than geometric. Gill Sans is a classic example.',
+        font: 'Lato', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 17, title: 'Width Master', subtitle: 'Regular vs Condensed',
+    cards: [
+      { type: 'Regular',   copy: 'Standard proportions, the normal width the designer intended. Balanced and versatile.',
+        font: 'Barlow', weight: 400, style: 'normal' },
+      { type: 'Condensed', copy: 'Redrawn, not just scaled, to be narrower. Tall and space-efficient, often the go-to for headlines with limited room.',
+        font: 'Barlow Condensed', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 18, title: 'Slab Scholar', subtitle: 'Bracketed Slab vs Unbracketed Slab',
+    cards: [
+      { type: 'Bracketed Slab',   copy: 'Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition.',
+        font: 'Bitter', weight: 400, style: 'normal' },
+      { type: 'Unbracketed Slab', copy: 'Serifs meet the stem at a clean 90° angle with no transition. More geometric and mechanical in feel.',
+        font: 'Arvo', weight: 700, style: 'normal' },
+    ]
+  },
+  {
+    num: 19, title: 'Sharp Eye', subtitle: 'Semi-Serif vs Sans-Serif',
+    cards: [
+      { type: 'Semi-Serif', copy: 'Subtle flares or partial serifs at stroke endings, sitting somewhere between a full serif and a clean sans.',
+        font: 'Faculty Glyphic', weight: 400, style: 'normal' },
+      { type: 'Sans-Serif', copy: 'Clean stroke endings. Pure and unadorned.',
+        font: 'IBM Plex Sans', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 20, title: 'Twin Spotter', subtitle: 'Display vs Text',
+    cards: [
+      { type: 'Display', copy: 'Optimized for headlines. Tighter spacing, higher contrast, and more detail that rewards a closer look.',
+        font: 'DM Serif Display', weight: 400, style: 'normal' },
+      { type: 'Text',    copy: 'Optimized for body copy. Wider spacing, lower contrast, and better readability at small sizes where detail would become noise.',
+        font: 'DM Serif Text', weight: 400, style: 'normal' },
+    ]
+  },
+  {
+    num: 21, title: 'Chaos Round', subtitle: 'Random · Random · Random',
+    cards: null,
+    text: 'Three fonts from anywhere in the game. Some combinations are easy, some will surprise you. This is also the best place to discover your next favorite font — every round is different. Save anything that catches your eye.'
+  },
+  {
+    num: 22, title: 'Grand Master', subtitle: 'Sibling vs Sibling',
+    cards: null,
+    text: 'Two fonts from the same category. Same family, different souls. Now you’re reading the individual essence within each.'
+  },
+];
+
+// ── Tracer constants ────────────────────────────────────────────────
+const LI_DOT_R     = 4;
+const LI_TRAIL_LEN = 50;
+const LI_PAPER     = '#FDFAF4';
+const LI_NIB       = '#C4440A';
+const LI_UPPER     = 'A';
+const LI_LOWER     = 'a';
+
+let liCellData  = [];
+let liAnimId    = null;
+let liCurrentLevel = null;
+
+// ── Responsive sizing ───────────────────────────────────────────────
+function liGetDimensions(nCards) {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const headerH = 52 + 60; // topbar + intro heading
+  const stageH  = vh - headerH;
+
+  let cellW, cellH, fontSize;
+
+  if (vw <= 680) {
+    cellW    = vw - 32;
+    cellH    = Math.round(cellW * 0.42);
+    fontSize = Math.round(cellH * 0.82);
+  } else {
+    const hPad = 40;
+    const gap  = 20;
+    const avail = vw - hPad * 2 - gap * (nCards - 1);
+    cellW    = Math.floor(avail / nCards);
+    cellW    = Math.min(cellW, 320);
+    cellH    = Math.min(Math.round(cellW * 0.62), Math.round(stageH * 0.82));
+    fontSize = Math.round(cellH * 0.84);
+  }
+
+  const cy  = cellH * 0.50 + fontSize * 0.04;
+  const U_X = cellW * 0.38;
+  const L_X = cellW * 0.62;
+
+  return { cellW, cellH, fontSize, U_X, U_Y: cy, L_X, L_Y: cy };
+}
+
+// ── Contour extraction ──────────────────────────────────────────────
+function liExtractContour(fontName, weight, style, letter, fSize, destX, destY) {
+  const SW  = Math.ceil(fSize * 1.5);
+  const SH  = Math.ceil(fSize * 1.5);
+  const scx = SW / 2, scy = SH / 2;
+  const off = document.createElement('canvas');
+  off.width = SW; off.height = SH;
+  const ctx = off.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.font = `${style} ${weight} ${fSize}px '${fontName}'`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(letter, scx, scy);
+  const { data } = ctx.getImageData(0, 0, SW, SH);
+  const W = SW, H = SH;
+  function filled(x, y) {
+    if (x < 0 || x >= W || y < 0 || y >= H) return false;
+    return data[(y * W + x) * 4 + 3] > 60;
+  }
+  const MOORE = [[-1,-1],[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0]];
+  let sx = -1, sy = -1;
+  outer: for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++)
+      if (filled(x, y)) { sx = x; sy = y; break outer; }
+  if (sx === -1) return [];
+  const contour = [];
+  let px = sx, py = sy, bx = sx, by = sy - 1, startKey = null;
+  for (let iter = 0; iter < W * H * 2; iter++) {
+    contour.push({ x: px, y: py });
+    let bi = 0;
+    for (let i = 0; i < 8; i++)
+      if (px + MOORE[i][0] === bx && py + MOORE[i][1] === by) { bi = i; break; }
+    let found = false;
+    for (let i = 1; i <= 8; i++) {
+      const ni = (bi + i) % 8;
+      const nx = px + MOORE[ni][0], ny = py + MOORE[ni][1];
+      if (filled(nx, ny)) {
+        const pi = (bi + i - 1) % 8;
+        bx = px + MOORE[pi][0]; by = py + MOORE[pi][1];
+        px = nx; py = ny; found = true; break;
+      }
+    }
+    if (!found) break;
+    const k = `${px},${py},${bx},${by}`;
+    if (!startKey) startKey = k;
+    else if (k === startKey && contour.length > 4) break;
+  }
+  const dx = destX - scx, dy = destY - scy;
+  return contour.map((p, i) => {
+    const a = contour[(i - 1 + contour.length) % contour.length];
+    const b = contour[(i + 1) % contour.length];
+    return { x: (a.x + p.x * 2 + b.x) / 4 + dx, y: (a.y + p.y * 2 + b.y) / 4 + dy };
+  });
+}
+
+// ── Tracer class ────────────────────────────────────────────────────
+class LiTracer {
+  constructor(contour, phase) {
+    this.contour = contour;
+    this.pos     = phase * contour.length;
+    this.trail   = [];
+    this.speed   = contour.length / 280;
+  }
+  step(dt) {
+    if (!this.contour.length) return;
+    this.pos = (this.pos + this.speed * dt) % this.contour.length;
+    this.trail.push(Math.floor(this.pos));
+    if (this.trail.length > LI_TRAIL_LEN) this.trail.shift();
+  }
+}
+
+// ── Ghost canvas (rendered once, blitted every frame) ───────────────
+function liRoundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+function liMakeGhostCanvas(f, dims) {
+  const W = dims.cellW, H = dims.cellH;
+  const off = document.createElement('canvas');
+  off.width = W; off.height = H;
+  const ctx = off.getContext('2d');
+  const fontStr = `${f.style} ${f.weight} ${dims.fontSize}px '${f.font}'`;
+  ctx.fillStyle = 'rgba(28,22,18,0.82)';
+  liRoundRect(ctx, 0, 0, W, H, 10); ctx.fill();
+  ctx.strokeStyle = 'rgba(253,250,244,0.07)'; ctx.lineWidth = 1;
+  liRoundRect(ctx, 0.5, 0.5, W-1, H-1, 10); ctx.stroke();
+  ctx.globalAlpha = 0.16; ctx.fillStyle = LI_PAPER;
+  ctx.font = fontStr; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(LI_UPPER, dims.U_X, dims.U_Y);
+  ctx.fillText(LI_LOWER, dims.L_X, dims.L_Y);
+  ctx.globalAlpha = 0.08; ctx.strokeStyle = LI_PAPER; ctx.lineWidth = 1;
+  ctx.strokeText(LI_UPPER, dims.U_X, dims.U_Y);
+  ctx.strokeText(LI_LOWER, dims.L_X, dims.L_Y);
+  ctx.globalAlpha = 1;
+  return off;
+}
+
+function liDrawNib(ctx, tracer) {
+  if (!tracer.contour.length) return;
+  const len = tracer.contour.length;
+  for (let i = 0; i < tracer.trail.length; i++) {
+    const pt = tracer.contour[tracer.trail[i] % len];
+    if (!pt) continue;
+    const frac = i / tracer.trail.length;
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, LI_DOT_R * 0.5, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(196,68,10,${frac * 0.4})`;
+    ctx.fill();
+  }
+  const pt = tracer.contour[Math.floor(tracer.pos) % len];
+  if (!pt) return;
+  const g = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, LI_DOT_R * 5);
+  g.addColorStop(0, 'rgba(196,68,10,0.32)');
+  g.addColorStop(1, 'rgba(196,68,10,0)');
+  ctx.beginPath(); ctx.arc(pt.x, pt.y, LI_DOT_R * 5, 0, Math.PI * 2);
+  ctx.fillStyle = g; ctx.fill();
+  ctx.beginPath(); ctx.arc(pt.x, pt.y, LI_DOT_R, 0, Math.PI * 2);
+  ctx.fillStyle = LI_NIB; ctx.shadowColor = LI_NIB; ctx.shadowBlur = 11;
+  ctx.fill(); ctx.shadowBlur = 0;
+}
+
+function liRenderCell(cd) {
+  const ctx = cd.cvs.getContext('2d');
+  ctx.drawImage(cd.ghostCanvas, 0, 0);
+  liDrawNib(ctx, cd.tUpper);
+  liDrawNib(ctx, cd.tLower);
+}
+
+// ── Build tracer stage ──────────────────────────────────────────────
+function liBuild(cards) {
+  if (liAnimId) { cancelAnimationFrame(liAnimId); liAnimId = null; }
+  liCellData = [];
+
+  const stage = document.getElementById('li-stage');
+  stage.querySelectorAll('.li-tracer-cell').forEach(el => el.remove());
+
+  const dims = liGetDimensions(cards.length);
+
+  const domCells = cards.map(f => {
+    const cell = document.createElement('div');
+    cell.className = 'li-tracer-cell';
+    const cvs = document.createElement('canvas');
+    cvs.className = 'li-pair-canvas';
+    cvs.width = dims.cellW; cvs.height = dims.cellH;
+    cell.appendChild(cvs);
+    const desc = document.createElement('div');
+    desc.className = 'li-cell-desc';
+    desc.style.width = dims.cellW + 'px';
+    desc.innerHTML = `<div class="li-cell-type">${f.type}</div><div class="li-cell-copy">${f.copy}</div>`;
+    cell.appendChild(desc);
+    stage.appendChild(cell);
+    return { cvs, f };
+  });
+
+  // Font load → warmup → extract
+  const loads = cards.map(f =>
+    document.fonts.load(`${f.style} ${f.weight} ${dims.fontSize}px '${f.font}'`)
+  );
+
+  Promise.all(loads).then(() => {
+    cards.forEach(f => {
+      const w = document.createElement('canvas');
+      w.width = w.height = 2;
+      const wc = w.getContext('2d');
+      wc.font = `${f.style} ${f.weight} ${dims.fontSize}px '${f.font}'`;
+      wc.fillText(LI_UPPER, -9999, -9999);
+      wc.fillText(LI_LOWER, -9999, -9999);
+    });
+
+    setTimeout(() => {
+      domCells.forEach(({ cvs, f }) => {
+        const cU = liExtractContour(f.font, f.weight, f.style, LI_UPPER, dims.fontSize, dims.U_X, dims.U_Y);
+        const cL = liExtractContour(f.font, f.weight, f.style, LI_LOWER, dims.fontSize, dims.L_X, dims.L_Y);
+        const ghostCanvas = liMakeGhostCanvas(f, dims);
+        liCellData.push({ cvs, ghostCanvas, f, tUpper: new LiTracer(cU, 0), tLower: new LiTracer(cL, 0.5) });
+      });
+
+      let last = performance.now();
+      function loop(now) {
+        const dt = Math.min((now - last) / 16.67, 3);
+        last = now;
+        liCellData.forEach(cd => {
+          cd.tUpper.step(dt); cd.tLower.step(dt);
+          liRenderCell(cd);
+        });
+        liAnimId = requestAnimationFrame(loop);
+      }
+      liAnimId = requestAnimationFrame(loop);
+    }, 60);
+  });
+}
+
+// ── Show / Hide ─────────────────────────────────────────────────────
+function showLevelIntro(level) {
+  const data = LEVEL_INTRO_DATA.find(d => d.num === level.num);
+  if (!data) { startSession(level); return; } // fallback: skip intro
+
+  liCurrentLevel = level;
+
+  document.getElementById('li-number').textContent = data.num;
+  document.getElementById('li-title').textContent   = data.title;
+
+  const stage     = document.getElementById('li-stage');
+  const textBlock = document.getElementById('li-text-content');
+
+  if (data.cards) {
+    stage.style.display     = '';
+    textBlock.style.display = 'none';
+    liBuild(data.cards);
+  } else {
+    stage.style.display     = 'none';
+    textBlock.style.display = '';
+    textBlock.innerHTML = `<p>${data.text}</p>`;
+  }
+
+  const overlay = document.getElementById('level-intro-overlay');
+  overlay.classList.add('visible');
+  overlay.scrollTop = 0;
+}
+
+function hideLevelIntro() {
+  if (liAnimId) { cancelAnimationFrame(liAnimId); liAnimId = null; }
+  liCellData = [];
+  document.getElementById('level-intro-overlay').classList.remove('visible');
+  liCurrentLevel = null;
+}
+
+// ── Buttons ─────────────────────────────────────────────────────────
+document.getElementById('li-exit-btn').addEventListener('click', hideLevelIntro);
+
+document.getElementById('li-continue-btn').addEventListener('click', () => {
+  const level = liCurrentLevel;
+  hideLevelIntro();
+  startSession(level);
+});
+
+// ── Resize ───────────────────────────────────────────────────────────
+let liResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(liResizeTimer);
+  liResizeTimer = setTimeout(() => {
+    const overlay = document.getElementById('level-intro-overlay');
+    if (!overlay.classList.contains('visible') || !liCurrentLevel) return;
+    const data = LEVEL_INTRO_DATA.find(d => d.num === liCurrentLevel.num);
+    if (data && data.cards) liBuild(data.cards);
+  }, 200);
+});
+
+
 </script>
 </body>
 </html>
