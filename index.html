@@ -3274,6 +3274,7 @@ html, body {
   -webkit-user-select: none;
   user-select: none;
   touch-action: none;
+  overscroll-behavior: none;
 }
 
 /* Grain overlay */
@@ -8451,7 +8452,7 @@ function isInGame() {
 const NAV_BUFFER = 5;  // dummy history entries to absorb rapid back swipes
 
 function pushNavState() {
-  history.pushState({ fontClashGame: true }, '');
+  history.pushState({ fontClashGame: true }, '', location.href);
 }
 
 function fillNavBuffer() {
