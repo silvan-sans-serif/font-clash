@@ -8449,10 +8449,14 @@ function isInGame() {
   return gameScreen.classList.contains('active');
 }
 
-const NAV_BUFFER = 5;  // dummy history entries to absorb rapid back swipes
+const NAV_BUFFER = 10;
+let navStateCounter = 0;  // unique ID per entry so Chrome can't collapse same-URL states
 
 function pushNavState() {
-  history.pushState({ fontClashGame: true }, '', location.href);
+  // Each entry gets a unique hash fragment — without this Chrome skips over
+  // identical-URL entries in one gesture and exits the page immediately
+  history.pushState({ fontClashGame: true, id: navStateCounter }, '', '#_' + navStateCounter);
+  navStateCounter++;
 }
 
 function fillNavBuffer() {
