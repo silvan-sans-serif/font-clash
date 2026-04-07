@@ -3263,7 +3263,7 @@
   --tile-grad-end: #F0EBE0;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html, body {
   width: 100%; height: 100%;
@@ -5211,6 +5211,7 @@ html, body {
   gap: 0.3rem;
   transition: border-color 0.2s, background 0.2s;
   position: relative;
+  min-width: 0;
 }
 .saved-font-specimen {
   font-size: 1.7rem;
@@ -6586,7 +6587,7 @@ const LEVELS = [
 {
     num: 21, name: 'Serif Clash', desc: 'Serif vs Serif vs Serif',
     categories: ['Serif A', 'Serif B', 'Serif C'],
-    mode: 'pool', rounds: 10,
+    mode: 'pool', rounds: 7,
     pools: { 'Serif A': SERIF_CLASH_POOL, 'Serif B': SERIF_CLASH_POOL, 'Serif C': SERIF_CLASH_POOL },
     dynamicZoneLabels: true,
     hasHintPanel: true,
@@ -6598,7 +6599,7 @@ const LEVELS = [
 {
     num: 22, name: 'Sans Clash', desc: 'Sans vs Sans vs Sans',
     categories: ['Sans A', 'Sans B', 'Sans C'],
-    mode: 'pool', rounds: 10,
+    mode: 'pool', rounds: 7,
     pools: { 'Sans A': SANS_CLASH_POOL, 'Sans B': SANS_CLASH_POOL, 'Sans C': SANS_CLASH_POOL },
     dynamicZoneLabels: true,
     hasHintPanel: true,
@@ -6610,7 +6611,7 @@ const LEVELS = [
 {
     num: 23, name: 'Slab Clash', desc: 'Slab vs Slab vs Slab',
     categories: ['Slab A', 'Slab B', 'Slab C'],
-    mode: 'pool', rounds: 10,
+    mode: 'pool', rounds: 7,
     pools: { 'Slab A': SLAB_POOL, 'Slab B': SLAB_POOL, 'Slab C': SLAB_POOL },
     dynamicZoneLabels: true,
     hasHintPanel: true,
@@ -6622,7 +6623,7 @@ const LEVELS = [
 {
     num: 24, name: 'Chaos Clash', desc: 'Random · Random · Random',
     categories: ['Font A', 'Font B', 'Font C'],
-    mode: 'pool', rounds: 10,
+    mode: 'pool', rounds: 7,
     pools: { 'Font A': ALL_FONTS_POOL, 'Font B': ALL_FONTS_POOL, 'Font C': ALL_FONTS_POOL },
     dynamicZoneLabels: true,
     hasHintPanel: true,
@@ -6632,7 +6633,7 @@ const LEVELS = [
 {
     num: 25, name: 'Grand Master', desc: 'Sibling vs Sibling',
     categories: ['Side A', 'Side B'],
-    mode: 'rowlock', rounds: 13,
+    mode: 'rowlock', rounds: 7,
     rows: [
       { 'Side A': { family: "'EB Garamond', serif", weight: 400, desc: "EB Garamond // warm Renaissance old style serif." }, 'Side B': { family: "'Crimson Pro', serif", weight: 400, desc: "Crimson Pro // elegant old style, similar warmth, subtle differences." } },
       { 'Side A': { family: "'Libre Baskerville', serif", weight: 400, desc: "Libre Baskerville // transitional serif, screen-optimized." }, 'Side B': { family: "'Merriweather', serif", weight: 400, desc: "Merriweather // transitional serif, large x-height." } },
@@ -8479,8 +8480,9 @@ window.addEventListener('load', () => {
 
 window.addEventListener('popstate', (e) => {
   if (isInGame()) {
-    // Silently swallow the back gesture — just re-push state so the next one is also caught
-    pushNavState();
+    // Refill the full buffer on every intercepted swipe — prevents rapid successive
+    // back gestures from draining the stack before JS can replenish it one at a time
+    fillNavBuffer();
   }
 });
 
