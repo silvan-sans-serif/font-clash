@@ -4097,7 +4097,7 @@ html, body {
 .onboarding-content {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.5;
   color: rgba(253,250,244,0.42);
   text-align: left;
   margin-bottom: 1.6rem;
@@ -4644,11 +4644,22 @@ html, body {
 }
 .xp-toast.perfect-initial .toast-value { color: var(--gold); }
 .xp-toast.perfect-word    .toast-value { color: var(--gold); }
-.xp-toast.perfect-round   .toast-value { color: var(--accent-red); }
-.xp-toast.bonus-blue      .toast-value { color: var(--accent-blue); }
+.xp-toast.perfect-round {
+  background: var(--ink);
+  border: 1.5px solid var(--accent-red);
+  animation: xpToastInPerfect 0.5s cubic-bezier(0.34,1.72,0.64,1) both;
+}
+.xp-toast.perfect-round .toast-label { color: rgba(253,250,244,0.55); }
+.xp-toast.perfect-round .toast-value { color: var(--paper); }
+.xp-toast.bonus-blue    .toast-value { color: var(--accent-blue); }
 @keyframes xpToastIn {
   from { opacity: 0; transform: translateY(-8px) scale(0.88); }
   to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+@keyframes xpToastInPerfect {
+  0%   { opacity: 0; transform: translateY(-8px) scale(0.72); }
+  70%  { opacity: 1; transform: translateY(0)    scale(1.14); }
+  100% {             transform: translateY(0)    scale(1);    }
 }
 @keyframes xpToastOut {
   from { opacity: 1; transform: translateY(0); }
@@ -4816,16 +4827,16 @@ html, body {
 
 /* Confetti */
 .confetti-piece {
-  position: fixed;
-  z-index: 85;
+  position: absolute;
+  z-index: 29;
   pointer-events: none;
   line-height: 1;
   user-select: none;
   animation: confettiFall 2.5s ease-out forwards;
 }
 @keyframes confettiFall {
-  0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
-  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  0%   { transform: translateY(0)     rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(720deg); }
 }
 
 /* Zone badge row — slides in after completion */
@@ -6006,23 +6017,23 @@ html, body {
 const SERIF_POOL = [
   { family: "'Noto Serif', serif",        weight: 400, weights: [300,400,700], desc: "Google's universal serif // balanced, readable, with comprehensive language support." },
   { family: "'PT Serif', serif",          weight: 400, weights: [400,700],     desc: "Transitional serif from ParaType // sturdy, constructed, optimized for screens." },
-  { family: "'Libre Baskerville', serif", weight: 400, weights: [400,700],     desc: "Transitional serif based on ATF Baskerville, optimised for screen reading." },
+  { family: "'Libre Baskerville', serif", weight: 400, weights: [400,700],     desc: "Transitional serif based on Baskerville, optimised for screen reading." },
   { family: "'EB Garamond', serif",       weight: 400, weights: [400,700],     desc: "Revival of Claude Garamond's Renaissance types // warm, humanist, timeless." },
-  { family: "'Crimson Pro', serif",       weight: 400, weights: [300,400,700], desc: "Elegant old style serif inspired by Garamond // refined, readable, expressive." },
+  { family: "'Crimson Pro', serif",       weight: 400, weights: [300,400,700], desc: "Elegant serif inspired by Garamond and old style type // refined, readable, expressive." },
   { family: "'Source Serif 4', serif",    weight: 400, weights: [300,400,700], desc: "Adobe's companion serif to Source Sans // transitional, clear, professional." },
   { family: "'Lora', serif",              weight: 400, weights: [400,700],     desc: "Contemporary serif with calligraphic roots // balanced, warm, literary." },
-  { family: "'Petrona', serif",           weight: 400, weights: [300,400,700], desc: "Gentle slab-influenced serif // warm, rounded, friendly, designed for screens." },
+  { family: "'Petrona', serif",           weight: 400, weights: [300,400,700], desc: "Gentle multi-influenced serif with plenty of personal touches // warm, rounded, friendly." },
   { family: "'Platypi', serif",           weight: 400, weights: [300,400,700], desc: "Playful contemporary serif // wide proportions, humanist warmth, distinctive charm." },
-  { family: "'Labrada', serif",           weight: 400, weights: [300,400,700], desc: "Cuban-rooted serif revival // warm old style forms with a literary sensibility." },
+  { family: "'Labrada', serif",           weight: 400, weights: [300,400,700], desc: "Serif revival designed by Omnibus-Type // warm forms inspired by indigenous cultures." },
   { family: "'Roboto Serif', serif",      weight: 400, weights: [300,400,700], desc: "Google's serif companion to Roboto // structured, versatile, screen-optimised." },
   { family: "'Andada Pro', serif",        weight: 400, weights: [300,400,700], desc: "Humanist serif by Huerta Tipográfica // warm, expressive, for long-form reading." },
   { family: "'Piazzolla', serif",         weight: 400, weights: [300,400,700], desc: "Elegant contemporary serif // expressive contrast, literary and editorial in feel." },
   { family: "'Ancizar Serif', serif",      weight: 400, weights: [300,400,700], desc: "Designed by Universidad Nacional de Colombia // warm humanist serif, open-licensed." },
-  { family: "'Libertinus Serif', serif",  weight: 400, weights: [400,700],     desc: "Open-source Times/Palatino descendant // refined, scholarly, classically proportioned." },
+  { family: "'Libertinus Serif', serif",  weight: 400, weights: [400,700],     desc: "Reminiscent of traditional book typefaces // refined, scholarly, classically proportioned." },
   { family: "'DM Serif Display', serif",  weight: 400, weights: [400],         desc: "DM Serif by Colophon Foundry // high-contrast display serif, commanding headlines." },
-  { family: "'Instrument Serif', serif",  weight: 400, weights: [400],         desc: "Refined old style serif // warm, elegant, designed for display and body." },
+  { family: "'Instrument Serif', serif",  weight: 400, weights: [400],         desc: "Refined modern serif // warm, elegant, designed for display and body." },
   { family: "'Bodoni Moda', serif",       weight: 400, weights: [400,700],     desc: "Modern didone with extreme stroke contrast // geometric, glamorous, editorial." },
-  { family: "'Alegreya', serif",          weight: 400, weights: [400,700],     desc: "Dynamic old style serif // calligraphic warmth, designed for long-form text." },
+  { family: "'Alegreya', serif",          weight: 400, weights: [400,700],     desc: "Dynamic old style inspired serif by Huerta Tipografica // calligraphic warmth, designed for long-form text." },
   { family: "'Literata', serif",          weight: 400, weights: [300,400,700], desc: "Contemporary transitional serif by TypeTogether // crafted for Google Play Books." },
   { family: "'Merriweather', serif",      weight: 400, weights: [300,400,700], desc: "Screen-optimized serif with large x-height // warm, readable, versatile." },
   { family: "'Spectral', serif",          weight: 400, weights: [300,400,700], desc: "Old style serif by Production Type // elegant, refined, for body text." },
@@ -6033,7 +6044,7 @@ const SERIF_POOL = [
   { family: "'Aujournuit', serif",          weight: 400, weights: [400],       desc: "Contemporary serif by Collletttivo // refined, editorial, with elegant proportions." },
   { family: "'Mazius Display', serif",      weight: 400, weights: [400,700],   desc: "High-contrast display serif by Collletttivo // dramatic, with a striking extra italic." },
   { family: "'Ortica Linear', serif",       weight: 400, weights: [300,400,700], desc: "Contemporary transitional serif by Collletttivo // clean, structured, linear refinement." },
-  { family: "'Young Serif', serif",         weight: 400, weights: [300,400,700], desc: "Warm serif by Noir Blanc Rouge // calligraphic, literary, with beautiful italics." },
+  { family: "'Young Serif', serif",         weight: 400, weights: [300,400,700], desc: "Warm blend of old style and transitional serif by Noir Blanc Rouge // with beautiful italics." },
   { family: "'Newsreader Text', serif",     weight: 400, weights: [300,400,700], desc: "Text-optimized serif by Production Type // open, comfortable for long reading." },
   { family: "'Junicode', serif",            weight: 400, weights: [400],       desc: "Scholarly old style serif by Peter Baker // designed for medievalists, broad Unicode support." }
 ];
@@ -6046,36 +6057,35 @@ const SANS_POOL = [
   { family: "'Poppins', sans-serif",         weight: 400, weights: [300,400,700], desc: "Geometric sans with perfectly round forms // friendly, clean, contemporary." },
   { family: "'Oswald', sans-serif",          weight: 400, weights: [300,400,700], desc: "Condensed gothic sans // tall, narrow, impact-driven, inspired by Alternate Gothic." },
   { family: "'Rubik', sans-serif",           weight: 400, weights: [300,400,700], desc: "Slightly rounded sans-serif with subtle warmth // geometric yet approachable." },
-  { family: "'DM Sans', sans-serif",         weight: 400, weights: [300,400,700], desc: "DM Sans by Colophon Foundry // geometric humanist sans, friendly and warm." },
-  { family: "'Work Sans', sans-serif",       weight: 400, weights: [300,400,700], desc: "Grotesque sans optimized for screen use // early 20th century influences." },
+  { family: "'DM Sans', sans-serif",         weight: 400, weights: [300,400,700], desc: "DM Sans by Colophon Foundry // low-contrast geometric design, friendly and warm." },
+  { family: "'Work Sans', sans-serif",       weight: 400, weights: [300,400,700], desc: "Based loosely on early Grotesques // early 20th century influences, for screen use." },
   { family: "'Plus Jakarta Sans', sans-serif",weight: 400, weights: [300,400,700], desc: "Modern geometric sans with elegant curves // polished and contemporary." },
   { family: "'Outfit', sans-serif",          weight: 400, weights: [300,400,700], desc: "Geometric sans with clean lines and rounded terminals // modern, friendly." },
   { family: "'Archivo', sans-serif",         weight: 400, weights: [300,400,700], desc: "Grotesque sans designed for the web // sturdy, versatile, and professional." },
   { family: "'Manrope', sans-serif",         weight: 400, weights: [300,400,700], desc: "Semi-rounded geometric sans // modern, minimal, slightly quirky." },
-  { family: "'IBM Plex Sans', sans-serif",   weight: 400, weights: [300,400,700], desc: "Grotesque designed by Mike Abbink for IBM // engineered, neutral, crisp." },
+  { family: "'IBM Plex Sans', sans-serif",   weight: 400, weights: [300,400,700], desc: "Neo-grotesque style sans designed by Bold Monday and IBM // engineered, neutral, crisp." },
   { family: "'Figtree', sans-serif",         weight: 400, weights: [300,400,700], desc: "Friendly geometric sans with open apertures // clean, warm, versatile." },
   { family: "'Space Grotesk', sans-serif",   weight: 400, weights: [300,400,700], desc: "Proportional sans derived from Space Mono // techy, geometric, modern." },
-  { family: "'Rethink Sans', sans-serif",    weight: 400, weights: [400,700],     desc: "Contemporary sans-serif with distinctive personality // fresh and readable." },
+  { family: "'Rethink Sans', sans-serif",    weight: 400, weights: [400,700],     desc: "Contemporary sans-serif with distinctive personality, designed by Hans Thiessen for Rethink // fresh and readable." },
   { family: "'Geist', sans-serif",           weight: 400, weights: [300,400,700], desc: "Vercel's geometric sans // clean, modern, optimised for developer interfaces." },
   { family: "'Onest', sans-serif",           weight: 400, weights: [300,400,700], desc: "Geometric grotesque inspired by mid-century type // clean, confident, contemporary." },
-  { family: "'Google Sans Flex', sans-serif",weight: 400, weights: [300,400,700], desc: "Google's variable humanist sans // clean, modern, designed for readability at any size." },
+  { family: "'Google Sans Flex', sans-serif",weight: 400, weights: [300,400,700], desc: "Google's variable geometric sans // clean, modern, designed for readability at any size." },
   { family: "'Sora', sans-serif",            weight: 400, weights: [300,400,700], desc: "Japanese-influenced geometric sans // precise, elegant, clean optical balance." },
   { family: "'Libre Franklin', sans-serif",  weight: 400, weights: [300,400,700], desc: "Revival of ATF Franklin Gothic // sturdy, versatile grotesque with strong news heritage." },
   { family: "'League Spartan', sans-serif",  weight: 400, weights: [300,400,700], desc: "Geometric sans by The League of Moveable Type // bold, confident, inspired by Futura." },
   { family: "'Absans', sans-serif",          weight: 400, weights: [400],         desc: "Geometric sans by Collletttivo // clean, abstract, with a minimal constructed character." },
   { family: "'Apfel Grotezk', sans-serif",   weight: 400, weights: [400,700],     desc: "Grotesque sans by Collletttivo // warm, friendly, with distinctive rounded forms." },
   { family: "'Panamera', sans-serif",        weight: 400, weights: [300,400,700], desc: "Contemporary sans by Noir Blanc Rouge // smooth, confident, with elegant proportions." },
-  { family: "'Lil Grotesk', sans-serif",     weight: 400, weights: [300,400,700], desc: "Geometric grotesque by Noir Blanc Rouge // compact, modern, with a playful edge." },
-  { family: "'Aujournuit', serif",           weight: 400, weights: [400],         desc: "Contemporary serif by Collletttivo // refined, editorial, with elegant proportions." }
+  { family: "'Lil Grotesk', sans-serif",     weight: 400, weights: [300,400,700], desc: "Geometric grotesque by Noir Blanc Rouge // compact, modern, with a playful edge." }
 ];
 
 const SLAB_POOL = [
   // Bracketed slabs
-  { family: "'Bitter', serif",       weight: 400, weights: [300,400,700], desc: "Clarendon-style slab // sturdy with open counters, screen-optimized." },
-  { family: "'Noticia Text', serif", weight: 400, weights: [400,700],     desc: "Clarendon slab serif // authoritative, clear, designed for news text." },
+  { family: "'Bitter', serif",       weight: 400, weights: [300,400,700], desc: "Contemporary-style slab serif typeface for digital text // sturdy with open counters, screen-optimized." },
+  { family: "'Noticia Text', serif", weight: 400, weights: [400,700],     desc: "Contemporary humanist slab serif // authoritative, clear, designed for news text." },
   { family: "'Besley', serif",       weight: 400, weights: [400,700],     desc: "Clarendon revival // bold, confident, with characteristic bracketed serifs." },
-  { family: "'Aleo', serif",         weight: 400, weights: [400,700],     desc: "Contemporary slab serif // clean, rounded, modern Clarendon style." },
-  { family: "'Pridi', serif",        weight: 400, weights: [300,400,700], desc: "Thai-influenced slab serif // warm letterforms with graceful bracketed serifs." },
+  { family: "'Aleo', serif",         weight: 400, weights: [400,700],     desc: "Contemporary slab serif companion to Lato font // clean, rounded, modern with a strong personality." },
+  { family: "'Pridi', serif",        weight: 400, weights: [300,400,700], desc: "Slab serif with humanist influence // warm letterforms with graceful bracketed serifs." },
   { family: "'Roboto Slab', serif",  weight: 400, weights: [400,700],     desc: "Google's slab companion to Roboto // structured proportions, subtly bracketed serifs." },
   { family: "'Enriqueta', serif",    weight: 400, weights: [400,700],     desc: "Compact book slab serif // warm, even stroke, bracketed serifs for long reading." },
   { family: "'Kameron', serif",      weight: 400, weights: [400,700],     desc: "Strong slab serif // confident proportions with traditional bracketed finishing." },
@@ -6083,13 +6093,13 @@ const SLAB_POOL = [
   // Unbracketed slabs
   { family: "'Josefin Slab', serif", weight: 400, weights: [300,400,700], desc: "Geometric slab // elegant, airy, clean rectangular serifs at 90°." },
   { family: "'Arvo', serif",         weight: 400, weights: [400,700],     desc: "Geometric slab serif // sturdy, flat serifs meeting stems at 90°." },
-  { family: "'Zilla Slab', serif",   weight: 400, weights: [300,400,700], desc: "Mozilla's slab serif // geometric foundations, clean flat serifs." },
+  { family: "'Zilla Slab', serif",   weight: 400, weights: [300,400,700], desc: "Mozilla's slab serif // clean structure with subtle humanist warmth." },
   { family: "'Hepta Slab', serif",   weight: 400, weights: [400,700],     desc: "Ultra-bold display slab // extreme weight, flat rectangular serifs." },
-  { family: "'Montagu Slab', serif", weight: 400, weights: [400,700],     desc: "Contemporary geometric slab // optically calibrated, clean 90° joints." },
+  { family: "'Montagu Slab', serif", weight: 400, weights: [400,700],     desc: "Contemporary geometric slab designed by Florian Karsten // optically calibrated, clean 90° joints." },
   { family: "'Solway', serif",       weight: 400, weights: [300,400,700], desc: "Friendly slab serif // warm construction with flat, geometric serifs." },
   { family: "'BioRhyme', serif",     weight: 400, weights: [300,400,700], desc: "Display slab serif // expressive, quirky proportions with blocky flat serifs." },
   { family: "'Podkova', serif",      weight: 400, weights: [400,700],     desc: "Horseshoe-inspired slab serif // distinctive, flat geometric finishing." },
-  { family: "'Rokkitt', serif",      weight: 400, weights: [300,400,700], desc: "Humanist slab serif // versatile and balanced, with clean flat serifs." }
+  { family: "'Rokkitt', serif",      weight: 400, weights: [300,400,700], desc: "Slab serif with geometric structure // clean, sturdy, and balanced." }
 ];
 
 const OLDSTYLE_POOL = [
@@ -6111,12 +6121,12 @@ const MODERN_POOL = [
   { family: "'Libre Bodoni', serif",     weight: 400, weights: [400,700], desc: "Open-source Bodoni revival // high contrast, refined, classical modern." },
   { family: "'Prata', serif",            weight: 400, weights: [400],     desc: "High-contrast didone display serif // dramatic thick-thin strokes, elegant." },
   { family: "'GFS Didot', serif",        weight: 400, weights: [400],     desc: "Faithful Didot revival // extreme vertical stress, hairline serifs, neoclassical." },
-  { family: "'Imbue', serif",            weight: 400, weights: [300,400,700], desc: "Variable optical-size serif // from delicate text to bold display." },
+  { family: "'Imbue', serif",            weight: 400, weights: [300,400,700], desc: "Variable optical-size modern serif // from delicate text to bold display." },
   { family: "'Old Standard TT', serif", weight: 400, weights: [400,700],     desc: "Neo-classical high-contrast serif // academic, sharp, modelled on 19th century book types." }
 ];
 
 const TRANSITIONAL_POOL = [
-  { family: "'Libre Baskerville', serif", weight: 400, weights: [400,700],     desc: "Transitional serif based on ATF Baskerville // built for screen clarity." },
+  { family: "'Libre Baskerville', serif", weight: 400, weights: [400,700],     desc: "Transitional serif based on Baskerville // built for screen clarity." },
   { family: "'PT Serif', serif",          weight: 400, weights: [400,700],     desc: "Transitional serif from ParaType // sturdy, constructed, optimized for screens." },
   { family: "'Noto Serif', serif",        weight: 400, weights: [300,400,700], desc: "Google's universal serif // balanced, readable, transitional structure." },
   { family: "'Source Serif 4', serif",    weight: 400, weights: [300,400,700], desc: "Adobe's companion serif // transitional, clear, professional." },
@@ -6127,11 +6137,11 @@ const TRANSITIONAL_POOL = [
 ];
 
 const BRACKETED_SLAB_POOL = [
-  { family: "'Bitter', serif",       weight: 400, weights: [300,400,700], desc: "Clarendon-style slab // sturdy with open counters, screen-optimized." },
-  { family: "'Noticia Text', serif", weight: 400, weights: [400,700],     desc: "Clarendon slab serif // authoritative, clear, designed for news text." },
+  { family: "'Bitter', serif",       weight: 400, weights: [300,400,700], desc: "Contemporary-style slab serif typeface for digital text // sturdy with open counters, screen-optimized." },
+  { family: "'Noticia Text', serif", weight: 400, weights: [400,700],     desc: "Contemporary humanist slab serif // authoritative, clear, designed for news text." },
   { family: "'Besley', serif",       weight: 400, weights: [400,700],     desc: "Clarendon revival // bold, confident, with characteristic bracketed serifs." },
-  { family: "'Aleo', serif",         weight: 400, weights: [400,700],     desc: "Contemporary slab serif // clean, rounded, modern Clarendon style." },
-  { family: "'Pridi', serif",        weight: 400, weights: [300,400,700], desc: "Thai-influenced slab serif // warm letterforms with graceful bracketed serifs." },
+  { family: "'Aleo', serif",         weight: 400, weights: [400,700],     desc: "Contemporary slab serif companion to Lato font // clean, rounded, modern with a strong personality." },
+  { family: "'Pridi', serif",        weight: 400, weights: [300,400,700], desc: "Slab serif with humanist influence // warm letterforms with graceful bracketed serifs." },
   { family: "'Roboto Slab', serif",  weight: 400, weights: [400,700],     desc: "Google's slab companion to Roboto // structured proportions, subtly bracketed serifs." },
   { family: "'Enriqueta', serif",    weight: 400, weights: [400,700],     desc: "Compact book slab serif // warm, even stroke, bracketed serifs for long reading." },
   { family: "'Kameron', serif",      weight: 400, weights: [400,700],     desc: "Strong slab serif // confident proportions with traditional bracketed finishing." },
@@ -6141,21 +6151,21 @@ const BRACKETED_SLAB_POOL = [
 const UNBRACKETED_SLAB_POOL = [
   { family: "'Josefin Slab', serif", weight: 400, weights: [300,400,700], desc: "Geometric slab // elegant, airy, clean rectangular serifs at 90°." },
   { family: "'Arvo', serif",         weight: 400, weights: [400,700],     desc: "Geometric slab serif // sturdy, flat serifs meeting stems at 90°." },
-  { family: "'Zilla Slab', serif",   weight: 400, weights: [300,400,700], desc: "Mozilla's slab serif // geometric foundations, clean flat serifs." },
+  { family: "'Zilla Slab', serif",   weight: 400, weights: [300,400,700], desc: "Mozilla's slab serif // clean structure with subtle humanist warmth." },
   { family: "'Hepta Slab', serif",   weight: 400, weights: [400,700],     desc: "Ultra-bold display slab // extreme weight, flat rectangular serifs." },
-  { family: "'Montagu Slab', serif", weight: 400, weights: [400,700],     desc: "Contemporary geometric slab // optically calibrated, clean 90° joints." },
+  { family: "'Montagu Slab', serif", weight: 400, weights: [400,700],     desc: "Contemporary geometric slab designed by Florian Karsten // optically calibrated, clean 90° joints." },
   { family: "'Solway', serif",       weight: 400, weights: [300,400,700], desc: "Friendly slab serif // warm construction with flat, geometric serifs." },
   { family: "'BioRhyme', serif",     weight: 400, weights: [300,400,700], desc: "Display slab serif // expressive, quirky proportions with blocky flat serifs." },
   { family: "'Podkova', serif",      weight: 400, weights: [400,700],     desc: "Horseshoe-inspired slab serif // distinctive, flat geometric finishing." },
-  { family: "'Rokkitt', serif",      weight: 400, weights: [300,400,700], desc: "Humanist slab serif // versatile and balanced, with clean flat serifs." }
+  { family: "'Rokkitt', serif",      weight: 400, weights: [300,400,700], desc: "Slab serif with geometric structure // clean, sturdy, and balanced." }
 ];
 
 const SEMI_SERIF_POOL = [
   { family: "'Galdeano', serif",        weight: 400, weights: [400],     desc: "Semi-serif with subtle, truncated serifs // bridging serif and sans." },
   { family: "'Marcellus', serif",       weight: 400, weights: [400],     desc: "Flared semi-serif inspired by classical Roman inscriptions." },
   { family: "'Asul', sans-serif",       weight: 400, weights: [400,700], desc: "Semi-serif with subtle flares // hybrid character, distinctive." },
-  { family: "'Faculty Glyphic', serif", weight: 400, weights: [400],     desc: "Glyphic semi-serif // chiseled, architectural, between serif and sans." },
-  { family: "'Bellefair', serif",        weight: 400, weights: [400],         desc: "Elegant semi-serif revival of Fairfield // refined flared strokes, literary warmth." },
+  { family: "'Faculty Glyphic', serif", weight: 400, weights: [400],     desc: "Chiseled semi-serif inspired by inscriptions // architectural, between serif and sans." },
+  { family: "'Bellefair', serif",        weight: 400, weights: [400],         desc: "Elegant semi-serif revival // refined flared strokes, literary warmth." },
   { family: "'Red Rose', serif",         weight: 400, weights: [300,400,700], desc: "Display semi-serif with chiseled, architectural forms // dramatic flared terminals." },
   { family: "'Farro', sans-serif",       weight: 400, weights: [300,400,700], desc: "Humanist semi-serif with subtle flared terminals // warm, readable, between worlds." },
   { family: "'Coconat', serif",           weight: 400, weights: [400],         desc: "Semi-serif by Collletttivo // minimal, architectural, with barely-there serifs." }
@@ -6164,8 +6174,8 @@ const SEMI_SERIF_POOL = [
 const GEOMETRIC_SANS_POOL = [
   { family: "'Montserrat', sans-serif", weight: 400, weights: [300,400,700], desc: "Geometric sans inspired by Buenos Aires signage // urban, modern." },
   { family: "'Poppins', sans-serif",    weight: 400, weights: [300,400,700], desc: "Geometric sans with perfectly round forms // friendly, clean." },
-  { family: "'Josefin Sans', sans-serif",weight: 400, weights: [300,400,700], desc: "Geometric sans inspired by Futura // tall, airy, precise." },
-  { family: "'Raleway', sans-serif",    weight: 400, weights: [300,400,700], desc: "Elegant geometric sans // tall, refined, with clean lines." },
+  { family: "'Josefin Sans', sans-serif",weight: 400, weights: [300,400,700], desc: "Geometric sans, somewhat inspired by Futura // tall, airy, precise." },
+  { family: "'Raleway', sans-serif",    weight: 400, weights: [300,400,700], desc: "Elegant and modern sans // tall, refined, with clean lines." },
   { family: "'Teachers', sans-serif",   weight: 400, weights: [400,700],     desc: "Clean geometric sans // crisp, educational, modern." },
   { family: "'Jost', sans-serif",       weight: 400, weights: [300,400,700], desc: "Geometric sans inspired by Futura // clean, minimal, versatile." },
   { family: "'Urbanist', sans-serif",   weight: 400, weights: [300,400,700], desc: "Low-contrast geometric sans // modern, minimal, urban feel." },
@@ -6182,11 +6192,11 @@ const HUMANIST_SANS_POOL = [
   { family: "'Source Sans 3', sans-serif", weight: 400, weights: [300,400,700], desc: "Adobe's first open-source type // humanist, versatile, professional." },
   { family: "'Cabin', sans-serif",         weight: 400, weights: [400,700],     desc: "Humanist sans with rounded strokes // warm, friendly, modern." },
   { family: "'Noto Sans', sans-serif",     weight: 400, weights: [300,400,700], desc: "Google's universal sans-serif // balanced, neutral, comprehensive." },
-  { family: "'Alegreya Sans', sans-serif", weight: 400, weights: [300,400,700], desc: "Humanist sans with calligraphic warmth // companion to Alegreya." },
+  { family: "'Alegreya Sans', sans-serif", weight: 400, weights: [300,400,700], desc: "Humanist sans with calligraphic warmth by Huerta Tipografica // companion to Alegreya." },
   { family: "'Reddit Sans', sans-serif",   weight: 400, weights: [300,400,700], desc: "Custom humanist sans designed for Reddit // warm, legible, friendly, versatile." },
   { family: "'Rambla', sans-serif",        weight: 400, weights: [400,700],     desc: "Humanist sans // warm, readable, with subtle stroke modulation." },
-  { family: "'Ysabeau Office', sans-serif",weight: 400, weights: [300,400,700], desc: "Humanist sans with gentle personality // refined, contemporary." },
-  { family: "'Ruda', sans-serif",          weight: 400, weights: [400,700],     desc: "Humanist sans with sturdy, legible construction // warm, grounded, versatile." },
+  { family: "'Ysabeau Office', sans-serif",weight: 400, weights: [300,400,700], desc: "Humanist sans with gentle personality // serif-adjacent, refined, contemporary." },
+  { family: "'Ruda', sans-serif",          weight: 400, weights: [400,700],     desc: "Quirky humanist sans with sturdy, legible construction // warm, grounded, versatile." },
   { family: "'Proza Libre', sans-serif",   weight: 400, weights: [400,700],     desc: "Humanist sans with calligraphic roots // warm, slightly informal, highly readable." }
 ];
 
@@ -6210,7 +6220,7 @@ const SQUARE_SANS_POOL = [
   { family: "'Rajdhani', sans-serif",weight: 400, weights: [300,400,700], desc: "Condensed sans with angular forms // geometric, industrial." },
   { family: "'Orbitron', sans-serif",weight: 400, weights: [400,700],     desc: "Geometric display sans // space-age, futuristic, angular." },
   { family: "'Oxanium', sans-serif", weight: 400, weights: [300,400,700], desc: "Square sans with rounded corners // gaming, techy, modern." },
-  { family: "'Saira', sans-serif",        weight: 400, weights: [300,400,700], desc: "Geometric sans with sharp edges // sporty, modern, versatile." },
+  { family: "'Saira', sans-serif",        weight: 400, weights: [300,400,700], desc: "Squarish and geometric sans with sharp edges // sporty, modern, versatile." },
   { family: "'Monda', sans-serif",        weight: 400, weights: [400,700],     desc: "Square-proportioned sans // clean, technical, gridded." },
   { family: "'Alumni Sans', sans-serif",  weight: 400, weights: [300,400,700], desc: "Narrow square sans with academic character // efficient, precise, refined." },
   { family: "'Titillium Web', sans-serif",weight: 400, weights: [300,400,700], desc: "Squarish geometric sans from Accademia di Belle Arti di Urbino // clean, structured, technical." },
@@ -6221,7 +6231,7 @@ const SQUARE_SANS_POOL = [
 
 const TYPEWRITER_POOL = [
   { family: "'Courier Prime', monospace", weight: 400, weights: [400,700], desc: "Upgraded Courier // designed for screenwriting, crisp at any size." },
-  { family: "'Xanh Mono', monospace",     weight: 400, weights: [400],     desc: "Vietnamese typewriter font // elegant, with distinctive serifs." },
+  { family: "'Xanh Mono', monospace",     weight: 400, weights: [400],     desc: "Typewriter font // elegant, with distinctive serifs." },
   { family: "'Cutive Mono', monospace",   weight: 400, weights: [400],     desc: "Typewriter-style monospace // nostalgic, mechanical, uneven ink." },
 ];
 
@@ -6231,8 +6241,8 @@ const BLACKLETTER_POOL = [
   { family: "'Germania One', serif",      weight: 400, weights: [400],         desc: "Germanic blackletter // bold, sturdy, with strong vertical strokes." },
   { family: "'Grenze Gotisch', serif",    weight: 400, weights: [300,400,700], desc: "Contemporary blackletter // gothic with modern proportions." },
   { family: "'UnifrakturCook', serif",    weight: 700, weights: [700],         desc: "Bold Fraktur blackletter // dense, traditional, ornamental." },
-  { family: "'Astloch', serif",           weight: 400, weights: [400,700],     desc: "Decorative blackletter // flowing, medieval, expressive." },
-  { family: "'Almendra Display', serif",  weight: 400, weights: [400],         desc: "Display blackletter // calligraphic, decorative, medieval spirit." },
+  { family: "'Astloch', serif",           weight: 400, weights: [400,700],     desc: "Decorative monolinear blackletter // flowing, medieval, expressive." },
+  { family: "'Almendra Display', serif",  weight: 400, weights: [400],         desc: "Display typeface design based on calligraphy // decorative, medieval spirit." },
   { family: "'Texturina', serif",         weight: 400, weights: [300,400,700], desc: "Textura blackletter // formal, upright, manuscript-inspired." },
   { family: "'Fruktur', serif",              weight: 400, weights: [400],         desc: "Decorative Fraktur // bold, expressive, with characteristic broken strokes." },
   { family: "'Manufacturing Consent', serif",weight: 400, weights: [400],         desc: "Display blackletter // bold, mechanical, industrial gothic character." }
@@ -6252,7 +6262,7 @@ const CONDENSED_POOL = [
 
 const EXPANDED_POOL = [
   { family: "'Stint Ultra Expanded', sans-serif", weight: 400, weights: [400],         desc: "Ultra-wide sans with unusually broad letterforms // commanding, display-focused." },
-  { family: "'BioRhyme Expanded', serif",         weight: 400, weights: [300,400,700], desc: "Expanded slab serif // expressive and wide, distinctive proportions." },
+  { family: "'BioRhyme Expanded', serif",         weight: 400, weights: [300,400,700], desc: "Expanded display slab serif // expressive and wide, distinctive proportions." },
   { family: "'Lexend Zetta', sans-serif",         weight: 400, weights: [400],         desc: "Extra-wide sans from the Lexend family // designed for maximum readability." },
   { family: "'Padyakke Expanded One', serif",     weight: 400, weights: [400],         desc: "Expanded display serif // bold, wide, with strong visual presence." },
   { family: "'Krona One', sans-serif",            weight: 400, weights: [400],         desc: "Wide, sturdy sans with strong horizontal emphasis // confident, modern." },
@@ -6346,14 +6356,14 @@ const LEVELS = [
     rows: [
       { 'Roman': { family: "'EB Garamond', serif", weight: 400, style: 'normal', desc: "EB Garamond upright // warm Renaissance letterforms." }, 'Italic': { family: "'EB Garamond', serif", weight: 400, style: 'italic', desc: "EB Garamond italic // flowing cursive, true italic forms." } },
       { 'Roman': { family: "'Cormorant Garamond', serif", weight: 400, style: 'normal', desc: "Cormorant Garamond upright // ultra-refined, delicate." }, 'Italic': { family: "'Cormorant Garamond', serif", weight: 400, style: 'italic', desc: "Cormorant Garamond italic // elegant flowing cursive." } },
-      { 'Roman': { family: "'Crimson Pro', serif", weight: 400, style: 'normal', desc: "Crimson Pro upright // elegant old style serif." }, 'Italic': { family: "'Crimson Pro', serif", weight: 400, style: 'italic', desc: "Crimson Pro italic // graceful slanted forms." } },
+      { 'Roman': { family: "'Crimson Pro', serif", weight: 400, style: 'normal', desc: "Crimson Pro upright // elegant old style inspired serif." }, 'Italic': { family: "'Crimson Pro', serif", weight: 400, style: 'italic', desc: "Crimson Pro italic // graceful slanted forms." } },
       { 'Roman': { family: "'Lora', serif", weight: 400, style: 'normal', desc: "Lora upright // calligraphic warmth, balanced." }, 'Italic': { family: "'Lora', serif", weight: 400, style: 'italic', desc: "Lora italic // expressive cursive with calligraphic flair." } },
       { 'Roman': { family: "'Spectral', serif", weight: 400, style: 'normal', desc: "Spectral upright // elegant old style, refined." }, 'Italic': { family: "'Spectral', serif", weight: 400, style: 'italic', desc: "Spectral italic // graceful, flowing cursive." } },
       { 'Roman': { family: "'Libre Baskerville', serif", weight: 400, style: 'normal', desc: "Libre Baskerville upright // transitional, balanced." }, 'Italic': { family: "'Libre Baskerville', serif", weight: 400, style: 'italic', desc: "Libre Baskerville italic // classical transitional italic." } },
       { 'Roman': { family: "'PT Serif', serif", weight: 400, style: 'normal', desc: "PT Serif upright // sturdy, constructed, screen-optimized." }, 'Italic': { family: "'PT Serif', serif", weight: 400, style: 'italic', desc: "PT Serif italic // structured yet flowing cursive." } },
       { 'Roman': { family: "'Merriweather', serif", weight: 400, style: 'normal', desc: "Merriweather upright // large x-height, screen-friendly." }, 'Italic': { family: "'Merriweather', serif", weight: 400, style: 'italic', desc: "Merriweather italic // warm, readable italic forms." } },
       { 'Roman': { family: "'Mazius Display', serif", weight: 400, style: 'normal', desc: "Mazius Display upright by Collletttivo // high contrast, dramatic display character." }, 'Italic': { family: "'Mazius Display', serif", weight: 400, style: 'italic', desc: "Mazius Display extra italic by Collletttivo // extreme, expressive cursive unlike anything else." } },
-      { 'Roman': { family: "'Young Serif', serif", weight: 400, style: 'normal', desc: "Young Serif upright by Noir Blanc Rouge // warm serif with calligraphic warmth." }, 'Italic': { family: "'Young Serif', serif", weight: 400, style: 'italic', desc: "Young Serif italic by Noir Blanc Rouge // flowing, literary, beautifully drawn." } }
+      { 'Roman': { family: "'Young Serif', serif", weight: 400, style: 'normal', desc: "Young Serif upright by Noir Blanc Rouge // warm old style transitional blend with calligraphic warmth." }, 'Italic': { family: "'Young Serif', serif", weight: 400, style: 'italic', desc: "Young Serif italic by Noir Blanc Rouge // flowing, literary, beautifully drawn." } }
     ],
     hasHintPanel: true,
     hintContent: `<h4>Roman vs Italic</h4>
@@ -6370,7 +6380,7 @@ const LEVELS = [
       { 'Light': { family: "'Barlow', sans-serif", weight: 300, desc: "Barlow Light // slim, industrial, precise." }, 'Regular': { family: "'Barlow', sans-serif", weight: 400, desc: "Barlow Regular // grounded grotesque, slightly condensed." }, 'Bold': { family: "'Barlow', sans-serif", weight: 700, desc: "Barlow Bold // industrial strength, confident." } },
       { 'Light': { family: "'Poppins', sans-serif", weight: 300, desc: "Poppins Light // geometric, delicate, airy circles." }, 'Regular': { family: "'Poppins', sans-serif", weight: 400, desc: "Poppins Regular // perfectly geometric, clean and round." }, 'Bold': { family: "'Poppins', sans-serif", weight: 700, desc: "Poppins Bold // geometric power, heavy and round." } },
       { 'Light': { family: "'Montserrat', sans-serif", weight: 300, desc: "Montserrat Light // urban elegance, thin geometric strokes." }, 'Regular': { family: "'Montserrat', sans-serif", weight: 400, desc: "Montserrat Regular // urban geometric, versatile." }, 'Bold': { family: "'Montserrat', sans-serif", weight: 700, desc: "Montserrat Bold // bold urban geometry, commanding." } },
-      { 'Light': { family: "'Crimson Pro', serif", weight: 300, desc: "Crimson Pro Light // delicate old style serif, refined." }, 'Regular': { family: "'Crimson Pro', serif", weight: 400, desc: "Crimson Pro Regular // elegant old style serif." }, 'Bold': { family: "'Crimson Pro', serif", weight: 700, desc: "Crimson Pro Bold // assertive old style with weight." } },
+      { 'Light': { family: "'Crimson Pro', serif", weight: 300, desc: "Crimson Pro Light // delicate old style inspired serif, refined." }, 'Regular': { family: "'Crimson Pro', serif", weight: 400, desc: "Crimson Pro Regular // elegant old style inspired serif." }, 'Bold': { family: "'Crimson Pro', serif", weight: 700, desc: "Crimson Pro Bold // assertive old style inspired with weight." } },
       { 'Light': { family: "'Work Sans', sans-serif", weight: 300, desc: "Work Sans Light // delicate, airy, refined screen grotesque." }, 'Regular': { family: "'Work Sans', sans-serif", weight: 400, desc: "Work Sans Regular // balanced, versatile, screen-optimized." }, 'Bold': { family: "'Work Sans', sans-serif", weight: 700, desc: "Work Sans Bold // strong grotesque, confident." } },
       { 'Light': { family: "'Source Sans 3', sans-serif", weight: 300, desc: "Source Sans Light // Adobe's first open-source type, delicate." }, 'Regular': { family: "'Source Sans 3', sans-serif", weight: 400, desc: "Adobe's Source Sans // humanist, versatile, professional." }, 'Bold': { family: "'Source Sans 3', sans-serif", weight: 700, desc: "Adobe's Source Sans Bold // strong and professional." } },
       { 'Light': { family: "'Playfair Display', serif", weight: 400, desc: "Playfair Display Regular // elegant didone, the lightest weight." }, 'Regular': { family: "'Playfair Display', serif", weight: 700, desc: "Playfair Display Bold // dramatic thick-thin, commanding." }, 'Bold': { family: "'Playfair Display', serif", weight: 900, desc: "Playfair Display Black // maximum drama, extreme contrast." } }
@@ -6394,7 +6404,7 @@ const LEVELS = [
 {
     num: 4, name: 'Width Wars', desc: 'Narrow vs Wide',
     categories: ['Narrow', 'Wide'],
-    mode: 'pool', rounds: 6,
+    mode: 'pool', rounds: 4,
     pools: { 'Narrow': CONDENSED_POOL, 'Wide': EXPANDED_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Narrow vs Wide</h4>
@@ -6434,7 +6444,7 @@ const LEVELS = [
 {
     num: 8, name: 'Gothic Clash', desc: 'Blackletter vs Blackletter',
     categories: ['Blackletter A', 'Blackletter B'],
-    mode: 'pool', rounds: 6,
+    mode: 'pool', rounds: 5,
     pools: { 'Blackletter A': BLACKLETTER_POOL, 'Blackletter B': BLACKLETTER_POOL },
     dynamicZoneLabels: true,
     hasHintPanel: true,
@@ -6513,10 +6523,10 @@ const LEVELS = [
       { 'Regular': { family: "'Fira Sans', sans-serif", weight: 400, desc: "Fira Sans by Mozilla // humanist, warm, open apertures." }, 'Condensed': { family: "'Fira Sans Extra Condensed', sans-serif", weight: 400, desc: "Fira Sans Extra Condensed by Mozilla // significantly narrower, contrast is unmistakable." } },
       { 'Regular': { family: "'Cabin', sans-serif", weight: 400, desc: "Cabin Regular // humanist, rounded, warm." }, 'Condensed': { family: "'Cabin Condensed', sans-serif", weight: 400, desc: "Cabin Condensed // narrower, more compact, efficient." } },
       { 'Regular': { family: "'Encode Sans', sans-serif", weight: 400, desc: "Encode Sans Regular // versatile, neutral, clean." }, 'Condensed': { family: "'Encode Sans Condensed', sans-serif", weight: 400, desc: "Encode Sans Condensed // compact, space-efficient." } },
-      { 'Regular': { family: "'Sofia Sans', sans-serif", weight: 400, desc: "Sofia Sans Regular // geometric, clean, confident proportions." }, 'Condensed': { family: "'Sofia Sans Condensed', sans-serif", weight: 400, desc: "Sofia Sans Condensed // tightly compressed, strong vertical rhythm." } },
+      { 'Regular': { family: "'Sofia Sans', sans-serif", weight: 400, desc: "A sans for the capital city of Bulgaria // Neo-grotesque, clean, confident proportions." }, 'Condensed': { family: "'Sofia Sans Condensed', sans-serif", weight: 400, desc: "Sofia Sans Condensed // tightly compressed, strong vertical rhythm." } },
       { 'Regular': { family: "'Saira', sans-serif", weight: 400, desc: "Saira Regular // geometric sans with sharp edges, sporty and modern." }, 'Condensed': { family: "'Saira Condensed', sans-serif", weight: 400, desc: "Saira Condensed // noticeably narrower, vertical emphasis intensified." } },
       { 'Regular': { family: "'Reddit Sans', sans-serif", weight: 400, desc: "Reddit Sans Regular // humanist, friendly, warm and legible." }, 'Condensed': { family: "'Reddit Sans Condensed', sans-serif", weight: 400, desc: "Reddit Sans Condensed // same DNA, significantly compressed proportions." } },
-      { 'Regular': { family: "'Ubuntu', sans-serif", weight: 400, desc: "Ubuntu by Canonical // humanist sans with distinctive warmth and open counters." }, 'Condensed': { family: "'Ubuntu Condensed', sans-serif", weight: 400, desc: "Ubuntu Condensed by Canonical // same friendly character, noticeably narrower." } },
+      { 'Regular': { family: "'Ubuntu', sans-serif", weight: 400, desc: "Ubuntu by Canonical // Futuristic sans with distinctive warmth and open counters." }, 'Condensed': { family: "'Ubuntu Condensed', sans-serif", weight: 400, desc: "Ubuntu Condensed by Canonical // same friendly character, noticeably narrower." } },
       { 'Regular': { family: "'League Gothic', sans-serif", weight: 400, desc: "League Gothic Regular by The League of Moveable Type // tall, grounded, full width impact." }, 'Condensed': { family: "'League Gothic Condensed', sans-serif", weight: 400, desc: "League Gothic Condensed by The League of Moveable Type // dramatically narrow, maximum vertical intensity." } },
       { 'Regular': { family: "'Aujournuit', serif", weight: 400, desc: "Aujournuit Regular by Collletttivo // refined serif, elegant standard proportions." }, 'Condensed': { family: "'Aujournuit Condensed', serif", weight: 400, desc: "Aujournuit Condensed by Collletttivo // same refined character, noticeably compressed." } }
     ],
@@ -6576,7 +6586,7 @@ const LEVELS = [
       { 'Display': { family: "'Noto Serif Display', serif", weight: 400, desc: "Google's Noto Serif Display // high contrast, designed for headlines." }, 'Text': { family: "'Noto Serif', serif", weight: 400, desc: "Google's Noto Serif // balanced for body text, universal readability." } },
       { 'Display': { family: "'Noto Sans Display', sans-serif", weight: 400, desc: "Google's Noto Sans Display // optimized for large sizes, tighter." }, 'Text': { family: "'Noto Sans', sans-serif", weight: 400, desc: "Google's Noto Sans // body text optimized, slightly wider spacing." } },
       { 'Display': { family: "'Libre Caslon Display', serif", weight: 400, desc: "Libre Caslon Display // open, refined proportions for large sizes." }, 'Text': { family: "'Libre Caslon Text', serif", weight: 400, desc: "Libre Caslon Text // sturdier, tighter, optimised for body reading." } },
-      { 'Display': { family: "'Wix Madefor Display', sans-serif", weight: 400, desc: "Wix Madefor Display // optimized for large sizes, tighter spacing and higher contrast." }, 'Text': { family: "'Wix Madefor Text', sans-serif", weight: 400, desc: "Wix Madefor Text // optimized for body copy, more open and comfortable to read." } },
+      { 'Display': { family: "'Wix Madefor Display', sans-serif", weight: 400, desc: "Wix Madefor Display, by Wix // optimized for large sizes, tighter spacing and higher contrast." }, 'Text': { family: "'Wix Madefor Text', sans-serif", weight: 400, desc: "Wix Madefor Text, by Wix // optimized for body copy, more open and comfortable to read." } },
       { 'Display': { family: "'Newsreader Display', serif", weight: 400, desc: "Newsreader Display by Production Type // high contrast, editorial sharpness for large sizes." }, 'Text': { family: "'Newsreader Text', serif", weight: 400, desc: "Newsreader Text by Production Type // open, comfortable, crafted for long reading." } },
       { 'Display': { family: "'Literata TT Display', serif", weight: 400, desc: "Literata TT Display by Type Together // optical display cut, higher contrast and tighter spacing." }, 'Text': { family: "'Literata TT Text', serif", weight: 400, desc: "Literata TT Text by Type Together // text cut, optimised for comfortable body reading." } }
     ],
@@ -6636,16 +6646,16 @@ const LEVELS = [
     categories: ['Side A', 'Side B'],
     mode: 'rowlock', rounds: 7,
     rows: [
-      { 'Side A': { family: "'EB Garamond', serif", weight: 400, desc: "EB Garamond // warm Renaissance old style serif." }, 'Side B': { family: "'Crimson Pro', serif", weight: 400, desc: "Crimson Pro // elegant old style, similar warmth, subtle differences." } },
+      { 'Side A': { family: "'EB Garamond', serif", weight: 400, desc: "EB Garamond // warm Renaissance old style serif." }, 'Side B': { family: "'Crimson Pro', serif", weight: 400, desc: "Crimson Pro // elegant old style inspired, similar warmth, subtle differences." } },
       { 'Side A': { family: "'Libre Baskerville', serif", weight: 400, desc: "Libre Baskerville // transitional serif, screen-optimized." }, 'Side B': { family: "'Merriweather', serif", weight: 400, desc: "Merriweather // transitional serif, large x-height." } },
       { 'Side A': { family: "'Playfair Display', serif", weight: 400, desc: "Playfair Display // didone with ball terminals, extreme contrast." }, 'Side B': { family: "'Bodoni Moda', serif", weight: 400, desc: "Bodoni Moda // didone, geometric, slightly different contrast." } },
-      { 'Side A': { family: "'Bitter', serif", weight: 400, desc: "Bitter // Clarendon slab, screen-optimized." }, 'Side B': { family: "'Arvo', serif", weight: 400, desc: "Arvo // geometric slab, sturdy and confident." } },
+      { 'Side A': { family: "'Bitter', serif", weight: 400, desc: "Bitter // Contemporary-style slab serif typeface, screen-optimized." }, 'Side B': { family: "'Arvo', serif", weight: 400, desc: "Arvo // geometric slab, sturdy and confident." } },
       { 'Side A': { family: "'Roboto Slab', serif", weight: 400, desc: "Google's Roboto Slab // geometric slab companion to Roboto." }, 'Side B': { family: "'Josefin Slab', serif", weight: 400, desc: "Josefin Slab // geometric slab, airy and elegant." } },
       { 'Side A': { family: "'Montserrat', sans-serif", weight: 400, desc: "Montserrat // geometric sans, urban and modern." }, 'Side B': { family: "'Poppins', sans-serif", weight: 400, desc: "Poppins // geometric sans, perfectly round forms." } },
       { 'Side A': { family: "'Lato', sans-serif", weight: 400, desc: "Lato // humanist sans, warm and stable." }, 'Side B': { family: "'Fira Sans', sans-serif", weight: 400, desc: "Humanist sans by Mozilla // warm, readable, with open apertures." } },
       { 'Side A': { family: "'Roboto Mono', monospace", weight: 400, desc: "Google's Roboto Mono // geometric monospace, crisp." }, 'Side B': { family: "'Space Mono', monospace", weight: 400, desc: "Space Mono // quirky monospace, techy and geometric." } },
       { 'Side A': { family: "'Courier Prime', monospace", weight: 400, desc: "Courier Prime // upgraded Courier, screenwriting standard." }, 'Side B': { family: "'Cutive Mono', monospace", weight: 400, desc: "Cutive Mono // typewriter monospace, nostalgic." } },
-      { 'Side A': { family: "'Rethink Sans', sans-serif", weight: 400, desc: "Rethink Sans // contemporary sans with personality." }, 'Side B': { family: "'Chivo', sans-serif", weight: 400, desc: "Chivo // grotesque sans, versatile and professional." } },
+      { 'Side A': { family: "'Rethink Sans', sans-serif", weight: 400, desc: "The sans designed for Rethink // contemporary sans with personality." }, 'Side B': { family: "'Chivo', sans-serif", weight: 400, desc: "Chivo // grotesque sans, versatile and professional." } },
       { 'Side A': { family: "'Spectral', serif", weight: 400, desc: "Spectral // elegant old style serif, refined." }, 'Side B': { family: "'Newsreader', serif", weight: 400, desc: "Newsreader // transitional serif designed for reading." } },
       { 'Side A': { family: "'Bricolage Grotesque', sans-serif", weight: 400, desc: "Bricolage Grotesque // quirky grotesque, characterful." }, 'Side B': { family: "'Space Grotesk', sans-serif", weight: 400, desc: "Space Grotesk // techy proportional sans, geometric." } },
       { 'Side A': { family: "'Playfair Display', serif", weight: 400, desc: "Playfair Display // didone display serif, extreme contrast." }, 'Side B': { family: "'Noto Serif Display', serif", weight: 400, desc: "Google's Noto Serif Display // universal display serif, balanced contrast." } }
@@ -7860,9 +7870,9 @@ function applyMode(mode) {
 // ===== ONBOARDING =====
 const SKILL_LEVEL_KEY = 'sorts_skill_level';
 const ONBOARDING_CONTENT = {
-  beginner: "If you're new to typography, this is going to be a great learning experience. This game introduces you to the most important type categories and helps you train your eye over time. Take it slow. Read the short explanations in each level and pay attention to the details. Typography is all about subtle differences. A small change in contrast or stroke can completely change a classification. You can double tap letters to zoom in and study them more closely. Use that. It helps a lot. Also, save fonts you like. You can come back to them later, explore where they come from, and use them in your own projects.",
-  mid:      "You probably know your way around type, but some of these distinctions can still get tricky. This game is about sharpening your eye. You'll start recognizing patterns faster, but some levels will still make you slow down and really look. Use comparison. Move letters next to each other. Look at contrast, proportions, and small structural details. That's where the real differences are. Some levels might surprise you. That's part of it. And don't forget to save fonts you like. This is a great place to discover type you might actually use.",
-  pro:      "The early levels will feel easy. That's intentional. You'll move through them quickly and unlock the harder stuff in no time. This is not a beginner game. Later levels get genuinely difficult, even if you know your type. Don't judge it too early. There's also a mode called Mad Genius Mode. That's where things get serious. It's fast, unforgiving, and built to challenge even experienced designers. Even then, you might still learn something new. Or at least refresh your eye. And if you're looking for new typefaces for your work, this is a surprisingly good place to find them."
+  beginner: "New to typography? This is a great place to start. The game covers the main type categories and trains your eye over time. Read the short explanations because typography is all about subtle differences. A small change in contrast or stroke can shift a classification entirely. Double tap letters to zoom in and study them closely. Save fonts you like to revisit and use in your own projects.",
+  mid:      "You know your way around type, but some distinctions still get tricky. This game is about recognizing visual typographic patterns and details. Slow down when it matters. Use comparison: move letters together and study contrast, proportions, structural details. Some levels will surprise you. Save fonts you find here because this game is a great place to discover type you'll actually use.",
+  pro:      "The early levels will feel easy to a pro like you. You'll get through them quickly and unlock the harder stuff. Later levels get more difficult, even if you are a type master: You will learn something new. Take on the Mad Genius Mode: It's fast, unforgiving, and built to be a challenge. And if you're hunting for professional typefaces to do real commercial work, this is a great place to find them."
 };
 
 (function initOnboarding() {
@@ -8328,7 +8338,7 @@ function showWin() {
     updateMGIndicators();
 
     winBannerEl.classList.add('mg-active');
-    winBannerTitleEl.textContent = isComplete ? 'Complete!' : 'Keep Going.';
+    winBannerTitleEl.textContent = isComplete ? 'Complete!' : (lastRoundWasPerfect ? 'Perfect!' : 'Keep Going.');
     const totalXpEl = document.getElementById('win-banner-total-xp');
     totalXpEl.textContent = `Your total: ${sessionLevelXP.toLocaleString()} XP`;
     totalXpEl.style.transition = 'none';
@@ -8360,7 +8370,7 @@ function showWin() {
     // Daily Run: no multiplier, stars earned normally
     winBannerEl.classList.remove('mg-active');
     sessionLevelXP += roundXP;
-    winBannerTitleEl.textContent = isComplete ? 'Complete!' : 'Keep Going.';
+    winBannerTitleEl.textContent = isComplete ? 'Complete!' : (lastRoundWasPerfect ? 'Perfect!' : 'Keep Going.');
     document.getElementById('win-banner-round-xp').textContent = `This round you gained ${roundXP.toLocaleString()} XP`;
     document.getElementById('win-banner-total-xp').textContent = `Your total: ${sessionLevelXP.toLocaleString()} XP`;
     const drRemaining = totalRounds - currentRound;
@@ -8374,7 +8384,7 @@ function showWin() {
     refreshLifetimeXPDisplay();
     sessionLevelXP += roundXP;
 
-    winBannerTitleEl.textContent = isComplete ? 'Level Complete.' : 'Keep Going.';
+    winBannerTitleEl.textContent = isComplete ? 'Level Complete.' : (lastRoundWasPerfect ? 'Perfect!' : 'Keep Going.');
     document.getElementById('win-banner-round-xp').textContent  = `This round you gained ${roundXP.toLocaleString()} XP`;
     document.getElementById('win-banner-total-xp').textContent  = `Your total: ${sessionLevelXP.toLocaleString()} XP`;
     const remaining = totalRounds - currentRound;
@@ -8450,13 +8460,9 @@ function isInGame() {
 }
 
 const NAV_BUFFER = 10;
-let navStateCounter = 0;  // unique ID per entry so Chrome can't collapse same-URL states
 
 function pushNavState() {
-  // Each entry gets a unique hash fragment — without this Chrome skips over
-  // identical-URL entries in one gesture and exits the page immediately
-  history.pushState({ fontClashGame: true, id: navStateCounter }, '', '#_' + navStateCounter);
-  navStateCounter++;
+  history.pushState({ fontClashGame: true }, '');
 }
 
 function fillNavBuffer() {
@@ -8485,8 +8491,14 @@ window.addEventListener('load', () => {
 
 window.addEventListener('popstate', (e) => {
   if (isInGame()) {
-    // Refill the full buffer on every intercepted swipe — prevents rapid successive
-    // back gestures from draining the stack before JS can replenish it one at a time
+    fillNavBuffer();
+  }
+});
+
+// Secondary catch — hashchange fires alongside popstate for hash navigation
+// and may catch cases popstate misses on some Android/Chrome versions
+window.addEventListener('hashchange', () => {
+  if (isInGame()) {
     fillNavBuffer();
   }
 });
@@ -8533,22 +8545,23 @@ continueBtn.addEventListener('click', () => {
 function spawnConfetti() {
   const colors = ['#C4440A', '#2B5F8E', '#B8922A', '#FDFAF4', '#C8BBA8'];
   const glyphs = [',', '.', ':', ';', '*', '~', '!', '"', "'", '§', '¶', '&', '@', '%', '#', '†', '—', '…', '·'];
-  const fonts  = ["'Playfair Display', serif", "'IBM Plex Sans', sans-serif", "'EB Garamond', serif", "'Roboto Mono', monospace"];
-  for (let i = 0; i < 240; i++) {
+  for (let i = 0; i < 80; i++) {
     const el = document.createElement('span');
     el.className = 'confetti-piece';
     el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
     el.style.left       = Math.random() * 100 + 'vw';
     el.style.top        = '-1.5em';
     el.style.color      = colors[Math.floor(Math.random() * colors.length)];
-    el.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+    el.style.fontFamily = "'Spectral', serif";
     el.style.fontSize   = (14 + Math.random() * 18) + 'px';
-    el.style.fontWeight = Math.random() > 0.5 ? '700' : '400';
-    el.style.opacity    = 0.75 + Math.random() * 0.25;
-    el.style.animationDelay    = (Math.random() * 0.8) + 's';
-    el.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 4000);
+    el.style.fontWeight = '700';
+    el.style.opacity    = 1;
+    const delay = Math.random() * 0.8;
+    const dur   = 1.0 + Math.random() * 1.0;
+    el.style.animationDelay    = delay + 's';
+    el.style.animationDuration = dur + 's';
+    gameScreen.appendChild(el);
+    setTimeout(() => el.remove(), (delay + dur) * 1000 + 50);
   }
 }
 
@@ -10414,6 +10427,10 @@ window.addEventListener('resize', () => {
   }, 200);
 });
 
+// --- Android Back Button Fix ---
+window.Capacitor?.Plugins?.App?.addListener('backButton', () => {
+    console.log("Back swipe blocked! Staying in Font Clash.");
+});
 
 </script>
 </body>
