@@ -6289,7 +6289,7 @@ const SERIF_CLASH_POOL = [
 
 // Combined pool for Level 22 (Sans Clash)
 const SANS_CLASH_POOL = [
-  ...SANS_POOL, ...GEOMETRIC_SANS_POOL, ...HUMANIST_SANS_POOL, ...MONO_POOL, ...ROUNDED_SANS_POOL
+  ...SANS_POOL, ...GEOMETRIC_SANS_POOL, ...HUMANIST_SANS_POOL, ...ROUNDED_SANS_POOL
 ].filter((f, i, arr) => arr.findIndex(x => x.family === f.family) === i);
 
 // Combined pool for Level 24 (Chaos Clash — random from any category)
@@ -6564,7 +6564,7 @@ const LEVELS = [
     hasHintPanel: true,
     hintContent: `<h4>Geometric vs Humanist Sans</h4>
       <p><strong>Geometric Sans</strong> — Built on circles and straight lines. Uniform stroke width, a perfect 'o', and a rational, constructed feel. Futura is the reference.</p>
-      <p><strong>Humanist Sans</strong> — Pen-influenced, with varying stroke width, open apertures, and a warmth that feels more human than geometric. Gill Sans is a classic example.</p>`
+      <p><strong>Humanist Sans</strong> — Pen-influenced. Sometimes with varying stroke width, open apertures, and a warmth that feels more human than geometric. Also referred to as dynamic. Gill Sans is a classic example.</p>`
   },
 {
     num: 19, name: 'Slab Inspector', desc: 'Bracketed vs Unbracketed',
@@ -6573,7 +6573,7 @@ const LEVELS = [
     pools: { 'Bracketed Slab': BRACKETED_SLAB_POOL, 'Unbracketed Slab': UNBRACKETED_SLAB_POOL },
     hasHintPanel: true,
     hintContent: `<h4>Bracketed Slab vs Unbracketed Slab</h4>
-      <p><strong>Bracketed Slab</strong> — Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition.</p>
+      <p><strong>Bracketed Slab</strong> — Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition. Make sure to zoom in (double tap) to see these details.</p>
       <p><strong>Unbracketed Slab</strong> — Serifs meet the stem at a clean 90° angle with no transition. More geometric and mechanical in feel.</p>`
   },
 {
@@ -10062,14 +10062,14 @@ const LEVEL_INTRO_DATA = [
     cards: [
       { type: 'Geometric Sans', copy: 'Built on circles and straight lines. Uniform stroke width, a perfect ‘o’, and a rational, constructed feel. Futura is the reference.',
         font: 'Josefin Sans', weight: 400, style: 'normal' },
-      { type: 'Humanist Sans',  copy: 'Pen-influenced, with varying stroke width, open apertures, and a warmth that feels more human than geometric. Gill Sans is a classic example.',
+      { type: 'Humanist Sans',  copy: 'Pen-influenced. Sometimes with varying stroke width, open apertures, and a warmth that feels more human than geometric. Also referred to as dynamic. Gill Sans is a classic example.',
         font: 'Lato', weight: 400, style: 'normal' },
     ]
   },
 {
     num: 19, title: 'Slab Inspector', subtitle: 'Bracketed Slab vs Unbracketed Slab',
     cards: [
-      { type: 'Bracketed Slab',   copy: 'Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition.',
+      { type: 'Bracketed Slab',   copy: 'Serifs transition into the stem with a curve or gradual angle. Warmer and more organic, in the Clarendon tradition. Make sure to zoom in (double tap) to see these details.',
         font: 'Enriqueta', weight: 700, style: 'normal' },
       { type: 'Unbracketed Slab', copy: 'Serifs meet the stem at a clean 90° angle with no transition. More geometric and mechanical in feel.',
         font: 'Arvo', weight: 700, style: 'normal' },
